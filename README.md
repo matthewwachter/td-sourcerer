@@ -37,7 +37,7 @@ Sourcerer aims to consolidate all of the above mentioned into a list of "sources
 
 ##How to Use
 
-Sources are created, arranged, and triggered by using the buttons above the list of sources. The selected source's parameters are editable in the top right area on the interface (labeled "Selected") and the "Live" (or currently playing) source is editable in the bottom right section. Once changes have been made to a "Live" source, the user can click the "Save To Selected Source" button to write the parameter values back to the selected source if desired.
+Sources are created, arranged, and triggered by using the buttons above the list of sources. The selected source's parameters are editable in the top right section of the interface (labeled "Selected") and the "Live" (or currently playing) source is editable in the bottom right section. Once changes have been made to a "Live" source, the user can click the "Save To Selected Source" button to write the parameter values back to the selected source if desired.
 
 ###Buttons
 
@@ -66,24 +66,25 @@ Examples:
 - Switch to a source by name (str):
 	
 	```
-	op('Sourcerer').SwitchToSource('blackout')
+	op('Sourcerer').SwitchToSource('Blackout')
 	```
 
+###Follow Actions
 
 Each source is provided a "Follow Action" parameter that defines what happens when the source is done playing. Sourcerer can automatically play the next source or go to another source by index or name. While working with image/movie files, follow actions can be triggered by setting a timer, a number of times to play, a chop channel, or by pulsing the "Done" pulse parameter. Generative (TOP) sources can either use a timer, a chop channel, or a "Done" pulse. For those of you familiar with Ableton, this can be thought of as clip follow actions. 
 
 ##Configuration
 
-###Sourcerer Parameters:
+###Sourcerer Parameters
 
-####Settings:
+####Settings
 
 - **Resolution** - The resolution of the background that the sources are composited over.
 
 
-###Individual Source Parameters:
+###Source Parameters
 
-####Settings:
+####Settings
 
 - **Name** - The name that is displayed in the list of sources. This is callable via the SwitchToSource method outlined below. Names should be unique in order for the SwitchToSource method to be able to find a source by name (str). 
 
@@ -99,7 +100,7 @@ Each source is provided a "Follow Action" parameter that defines what happens wh
 
 - **Command Pulse** - A test button to fire off the command.
 
-####File:
+####File
 
 - **File** - The path of the file.
 
@@ -146,7 +147,7 @@ Each source is provided a "Follow Action" parameter that defines what happens wh
 - **Go To Name** - The name (str) of the next source to play.
 
 
-####TOP:
+####TOP
 
 - **TOP** - The path to the TOP to be displayed.
 
@@ -159,7 +160,7 @@ Each source is provided a "Follow Action" parameter that defines what happens wh
 - **Done On** - When to evaluate the Follow Action (None, Timer, CHOP Channel).
 
 
-####Crop / Tile:
+####Crop / Tile
 
 - **Crop Left** - 0 to 1 fraction of where to crop the left side of the image.
 
@@ -190,7 +191,7 @@ Each source is provided a "Follow Action" parameter that defines what happens wh
 - **Overlap V** - Overlap the image in v to create a soft edge.
 
 
-####Color:
+####Color
 
 - **Invert** - Inverts the colors in the image. Black becomes white, white becomes black.
 
@@ -215,7 +216,7 @@ Each source is provided a "Follow Action" parameter that defines what happens wh
 - **Value** - Adjusts the overall color value of the image.
 
 
-####Transform:
+####Transform
 
 - **Pre-Fit Overlay** - Defines how the image is placed over the component's resolution (Fill, Fit Horizontal, Fit Vertical, Fit Best, Fit Outside, Native Resolution).
 
