@@ -9,25 +9,25 @@ In a typical show file, there may be a large number of sources that need to be d
 
 Apart from the many parameters that an image file or a generative source within the scene might have, a few post-processing effects might need to be applied to a source such as:
 
-	Crop
-	Tile
-	Flip
-	Brightness
-	Gamma
-	Contrast
-	Color 
-	H/S/V
-	Translation
-	Scale
-	Rotation	
+- Crop
+- Tile
+- Flip
+- Brightness
+- Gamma
+- Contrast
+- Color 
+- H/S/V
+- Translation
+- Scale
+- Rotation	
 
 Additionally, one might need to deal with some playback logic like:
 	
-	How long should a source play/loop or how do we know it is finished?
-	What do we play next?
-	What type of transition do we need?
-	How long is the transition?
-	Do we need to run a script?
+- How long should a source play/loop or how do we know it is finished?
+- What do we play next?
+- What type of transition do we need?
+- How long is the transition?
+- Do we need to run a script?
 
 If there are a great number of sources in a scene that require these effects or logic, things can quickly become quite taxing on the system. Often times, the programmer will find themselves in a position where they've run out of the physical resources needed.
 
@@ -41,13 +41,13 @@ Sources are created, arranged, and triggered by using the buttons above the list
 
 The buttons at the top of the source list are as follows:
 
-	Add a new source,
-	Copy a Source,
-	Delete a source,
-	Move a source up in the list
-	Move a source down in the list
-	Switch to the selected source (send it)
-	Enable/Disable the editing interface to save system resources.
+- Add a new source,
+- Copy a Source,
+- Delete a source,
+- Move a source up in the list
+- Move a source down in the list
+- Switch to the selected source (send it)
+- Enable/Disable the editing interface to save system resources.
 
 ###Promoted Extension Method
 
@@ -55,13 +55,13 @@ The user may also choose to use the promoted extension method SwitchToSource(sou
 
 Examples:
 	
-	Switch to a source by index (int):
+- Switch to a source by index (int):
 
-		op('Sourcerer').SwitchToSource(1)
+	````op('Sourcerer').SwitchToSource(1)````
 
-	Switch to a source by name (str):
+- Switch to a source by name (str):
 	
-		op('Sourcerer').SwitchToSource('blackout')
+	````op('Sourcerer').SwitchToSource('blackout')````
 
 
 Each source is provided a "Follow Action" parameter that defines what happens when the source is done playing. Sourcerer can automatically play the next source or go to another source by index or name. When working with image files, follow actions can be triggered by defining a timer, setting a number of times to play, a chop channel, or by pulsing the "Done" pulse parameter. Generative (TOP) sources can either use a timer, a chop channel, or a "Done" pulse. For those of you familiar with Ableton, this can be thought of as clip follow actions. 
