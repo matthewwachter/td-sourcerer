@@ -41,12 +41,12 @@ Sources are created, arranged, and triggered by using the buttons above the list
 
 The buttons at the top of the source list are as follows:
 
-- Add a new source,
+- [add](images/add.jpg)Add a new source,
 - Copy a Source,
 - Delete a source,
 - Move a source up in the list
 - Move a source down in the list
-- Switch to the selected source (send it)
+- Switch to the selected source
 - Enable/Disable the editing interface to save system resources.
 
 ###Promoted Extension Method
@@ -57,14 +57,18 @@ Examples:
 	
 - Switch to a source by index (int):
 
-	````op('Sourcerer').SwitchToSource(1)````
+	```
+	op('Sourcerer').SwitchToSource(1)
+	```
 
 - Switch to a source by name (str):
 	
-	````op('Sourcerer').SwitchToSource('blackout')````
+	```
+	op('Sourcerer').SwitchToSource('blackout')
+	```
 
 
-Each source is provided a "Follow Action" parameter that defines what happens when the source is done playing. Sourcerer can automatically play the next source or go to another source by index or name. When working with image files, follow actions can be triggered by defining a timer, setting a number of times to play, a chop channel, or by pulsing the "Done" pulse parameter. Generative (TOP) sources can either use a timer, a chop channel, or a "Done" pulse. For those of you familiar with Ableton, this can be thought of as clip follow actions. 
+Each source is provided a "Follow Action" parameter that defines what happens when the source is done playing. Sourcerer can automatically play the next source or go to another source by index or name. While working with image/movie files, follow actions can be triggered by setting a timer, a number of times to play, a chop channel, or by pulsing the "Done" pulse parameter. Generative (TOP) sources can either use a timer, a chop channel, or a "Done" pulse. For those of you familiar with Ableton, this can be thought of as clip follow actions. 
 
 ##Configuration
 
