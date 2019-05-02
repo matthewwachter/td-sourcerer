@@ -90,13 +90,13 @@ Each source is provided a "Follow Action" parameter that defines what happens wh
 
 - **Source Type** - Either File (location on disk) or TOP (path of a top in your scene). This selection enables/disables the two following parameter pages.
 
-- **Transition Type** - The type of transition to use when switching to THIS source.
+- **Transition Type** - The type of transition to use when switching to <u>THIS</u> source.
 
-- **Transition Time** - The length of the transition when switching to THIS source.
+- **Transition Time** - The length of the transition when switching to <u>THIS</u> source.
 
-- **Enable Command** - Enable the command in the Command parameter to be executed when THIS source is switched to.
+- **Enable Command** - Enable the command in the Command parameter to be executed when <u>THIS</u> source is switched to.
 
-- **Command** - The python command to execute when THIS source is switched to if the Enable Command parameter is True.
+- **Command** - The python command to execute when <u>THIS</u> source is switched to if the Enable Command parameter is True.
 
 - **Command Pulse** - A test button to fire off the command.
 
@@ -151,7 +151,7 @@ Each source is provided a "Follow Action" parameter that defines what happens wh
 
 - **TOP** - The path to the TOP to be displayed.
 
-- **Enable Cue Top** - Enable this parameter to allow the Moviefilein TOP in the following parameter to be cued when THIS source is switched to.
+- **Enable Cue Top** - Enable this parameter to allow the Moviefilein TOP in the following parameter to be cued when <u>THIS</u> source is switched to.
 
 - **Cue TOP** - The path to the Moviefilein TOP to pulse the cue parameter on.
 
