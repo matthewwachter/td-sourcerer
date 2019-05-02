@@ -71,34 +71,41 @@ Examples:
 
 ###Transitions
 
-The type of transition and transition time into each source may be defined in it's respective settings page. The following transitions are natively supported:
+The transition *into* each source may be defined under the settings parameter page for each source. Transition time is set in seconds via the Transition Time parameter.
 
-- Additive
-- Average
-- Blinds
-- Blood
-- Circle Reveal
-- Circle Stretch
-- Cloud Reveal
-- Color Burn
-- Color Distance
-- Cross Warp
-- Difference
-- Dissolve
-- Dreamy
-- Fade
-- Fade Black
-- Linear Burn
-- Maximum
-- Morph 1
-- Morph 2
-- Perlin
-- Radial Blur
-- Random Squares
-- Ripple
-- Stretch
+There are 3 primary types of transitions: GLSL, File, and TOP.
 
-Alternatively, a transition file may be provided. This file should start in black and end in white.
+- **GLSL** - Pick from a list of 24 premade transitions.
+	- Additive
+	- Average
+	- Blinds
+	- Blood
+	- Circle Reveal
+	- Circle Stretch
+	- Cloud Reveal
+	- Color Burn
+	- Color Distance
+	- Cross Warp
+	- Difference
+	- Dissolve
+	- Dreamy
+	- Fade
+	- Fade Black
+	- Linear Burn
+	- Maximum
+	- Morph 1
+	- Morph 2
+	- Perlin
+	- Radial Blur
+	- Random Squares
+	- Ripple
+	- Stretch
+
+- **File** - Specify a file on the disk that starts in black and ends in white.
+
+- **TOP** - Specify a TOP that starts in black and ends in white.
+
+
 
 ###Follow Actions
 
