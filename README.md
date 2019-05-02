@@ -31,7 +31,7 @@ Additionally, one might need to deal with some playback logic like:
 - How long is the transition?
 - Do we need to run a script?
 
-If there are a great number of sources in a scene that require these effects or logic, things can quickly become quite taxing on the system. Often times, the programmer will find themselves in a position where they've run out of the physical resources needed.
+If there are a great number of sources in a scene that require these effects or logic, things can quickly become quite taxing on the system. Often times, the programmer will find themselves in a position where they've run out of the physical resources needed to achieve their desired framerate.
 
 Sourcerer aims to consolidate all of the above mentioned into a list of "sources" (presets) that can be recalled via 2 interfaces: the UI buttons, and the promoted extension methods. 
 
