@@ -41,13 +41,13 @@ Sources are created, arranged, and triggered by using the buttons above the list
 
 The buttons at the top of the source list are as follows:
 
-- ![add](images/add.jpg) Add a new source,
-- Copy a Source,
-- Delete a source,
-- Move a source up in the list
-- Move a source down in the list
-- Switch to the selected source
-- Enable/Disable the editing interface to save system resources.
+- ![add](images/add_new.jpg) Add a new source,
+- ![copy](images/copy.jpg) Copy a Source,
+- ![delete](images/delete.jpg) Delete a source,
+- ![move_up](images/move_up.jpg) Move a source up in the list
+- ![move_down](images/move_down.jpg) Move a source down in the list
+- ![switch_to_source](images/switch_to_source.jpg) Switch to the selected source
+- ![edit](images/edit.jpg) Enable/Disable the editing interface to save system resources.
 
 ###Promoted Extension Method
 
