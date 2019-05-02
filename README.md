@@ -69,6 +69,37 @@ Examples:
 	op('Sourcerer').SwitchToSource('Blackout')
 	```
 
+###Transitions
+
+The type of transition and transition time into each source may be defined in it's respective settings page. The following transitions are natively supported:
+
+- Additive
+- Average
+- Blinds
+- Blood
+- CircleReveal
+- CircleStretch
+- CloudReveal
+- ColorBurn
+- ColorDistance
+- CrossWarp
+- Difference
+- Dissolve
+- Dreamy
+- Fade
+- Fade Black
+- Linear Burn
+- Maximum
+- Morph1
+- Morph2
+- Perlin
+- RadialBlur
+- Random Squares
+- Ripple
+- Stretch
+
+Alternatively a transition file may be provided. This file should start in black and end in white.
+
 ###Follow Actions
 
 Each source is provided a "Follow Action" parameter that defines what happens when the source is done playing. Sourcerer can automatically play the next source or go to another source by index or name. While working with image/movie files, follow actions can be triggered by setting a timer, a number of times to play, a chop channel, or by pulsing the "Done" pulse parameter. Generative (TOP) sources can either use a timer, a chop channel, or a "Done" pulse. For those of you familiar with Ableton, this can be thought of as clip follow actions. 
