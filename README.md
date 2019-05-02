@@ -101,10 +101,13 @@ There are 3 primary types of transitions: **GLSL**, **File**, and **TOP**.
 	- Ripple
 	- Stretch
 
-- **File** - Specify a file on the disk that starts in black and ends in white.
+- **File** - Specify a file on the disk 
+	- Should start in black and end in white.
+	- The file is played over the duration of the transition set with the "Transition Time" parameter
 
-- **TOP** - Specify a TOP that starts in black and ends in white.
-
+- **TOP** - Specify a TOP in the scene
+	- Should start in black and end in white.
+	- A "transition_progress" channel is provided in the CHOP output of the Sourcerer component as to easily drive a generative transition while using the TOP transition type. 
 
 
 ###Follow Actions
