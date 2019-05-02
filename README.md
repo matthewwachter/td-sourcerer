@@ -71,9 +71,9 @@ Examples:
 
 ###Transitions
 
-The transition *into* each source may be defined under the settings parameter page for each source. Transition time is set in seconds via the Transition Time parameter.
+The transition **into** each source may be defined under the settings parameter page for each source. Transition time is set in seconds via the Transition Time parameter.
 
-There are 3 primary types of transitions: GLSL, File, and TOP.
+There are 3 primary types of transitions: **GLSL**, **File**, and **TOP**.
 
 - **GLSL** - Pick from a list of 24 premade transitions.
 	- Additive
