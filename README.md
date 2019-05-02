@@ -77,12 +77,12 @@ The type of transition and transition time into each source may be defined in it
 - Average
 - Blinds
 - Blood
-- CircleReveal
-- CircleStretch
-- CloudReveal
-- ColorBurn
-- ColorDistance
-- CrossWarp
+- Circle Reveal
+- Circle Stretch
+- Cloud Reveal
+- Color Burn
+- Color Distance
+- Cross Warp
 - Difference
 - Dissolve
 - Dreamy
@@ -90,15 +90,15 @@ The type of transition and transition time into each source may be defined in it
 - Fade Black
 - Linear Burn
 - Maximum
-- Morph1
-- Morph2
+- Morph 1
+- Morph 2
 - Perlin
-- RadialBlur
+- Radial Blur
 - Random Squares
 - Ripple
 - Stretch
 
-Alternatively a transition file may be provided. This file should start in black and end in white.
+Alternatively, a transition file may be provided. This file should start in black and end in white.
 
 ###Follow Actions
 
