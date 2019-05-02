@@ -90,13 +90,13 @@ Each source is provided a "Follow Action" parameter that defines what happens wh
 
 - **Source Type** - Either File (location on disk) or TOP (path of a top in your scene). This selection enables/disables the two following parameter pages.
 
-- **Transition Type** - The type of transition to use when switching to <u>THIS</u> source.
+- **Transition Type** - The type of transition to use when switching to _THIS_ source.
 
-- **Transition Time** - The length of the transition when switching to <u>THIS</u> source.
+- **Transition Time** - The length of the transition when switching to _THIS_ source.
 
-- **Enable Command** - Enable the command in the Command parameter to be executed when <u>THIS</u> source is switched to.
+- **Enable Command** - Enable the command in the Command parameter to be executed when _THIS_ source is switched to.
 
-- **Command** - The python command to execute when <u>THIS</u> source is switched to if the Enable Command parameter is True.
+- **Command** - The python command to execute when _THIS_ source is switched to if the Enable Command parameter is True.
 
 - **Command Pulse** - A test button to fire off the command.
 
