@@ -93,134 +93,134 @@ Each source is provided a "Follow Action" parameter that defines what happens wh
 
 - **Command Pulse** - A test button to fire off the command.
 
-File:
+####File:
 
-	File - The path of the file.
+- **File** - The path of the file.
 
-	File Length Frames (read only) - The length of the file in frames.
+- **File** Length Frames (read only) - The length of the file in frames.
 
-	Trim - Enable file trimming.
+- **Trim** - Enable file trimming.
 
-	Trim Start Frames - The frame to start the file on.
+- **Trim Start Frames** - The frame to start the file on.
 
-	Trim End Frames - The frame to end the file on.
+- **Trim End Frames** - The frame to end the file on.
 
-	Speed - File playback speed multiplier (1=100%).
+- **Speed** - File playback speed multiplier (1=100%).
 
-	Interpolate frames - Blend between frames when playing slower than 100%.
+- **Interpolate frames** - Blend between frames when playing slower than 100%.
 
-	Cue - A toggle switch to cue the video at the Cue Point Frames parameter.
+- **Cue** - A toggle switch to cue the video at the Cue Point Frames parameter.
 
-	Cue Pulse - A pulse to cue the video at the Cue Point Frames parameter.
+- **Cue Pulse** - A pulse to cue the video at the Cue Point Frames parameter.
 
-	Cue Point Frames - The point in the video (in frames) to cue from.
+- **Cue Point Frames** - The point in the video (in frames) to cue from.
 
-	Loop Crossfade Frames - The number of frames to crossfade a loop.
+- **Loop Crossfade Frames** - The number of frames to crossfade a loop.
 
-	Deinterlace - Deinterlace the playback (Even/Odd/Bob(split)).
+- **Deinterlace** - Deinterlace the playback (Even/Odd/Bob(split)).
 
-	Field Precedence - Deinterlace mode (Even/Odd).
+- **Field Precedence** - Deinterlace mode (Even/Odd).
 
-	Extend Right - Define what happens at the end of the file.
+- **Extend Right** - Define what happens at the end of the file.
 
-	Done On - When to evaluate the Follow Action (None, Play (n) Times, Timer, CHOP Channel).
+- **Done On** - When to evaluate the Follow Action (None, Play (n) Times, Timer, CHOP Channel).
 
-	Play (n) Times - Number of times to play the file before the Follow Action is triggered.
+- **Play (n) Times** - Number of times to play the file before the Follow Action is triggered.
 
-	Timer Time (sec) - Amount of time to play the file before the Follow Action is triggered.
+- **Timer Time (sec)** - Amount of time to play the file before the Follow Action is triggered.
 
-	CHOP - Path to a chop who's first channel can trigger the Follow Action when toggled from off (0) to on (1).
+- **CHOP** - Path to a chop who's first channel can trigger the Follow Action when toggled from off (0) to on (1).
 
-	Done Pulse - Trigger the Follow Action immediately.
+- **Done Pulse** - Trigger the Follow Action immediately.
 
-	Follow Action - The type of follow action to use (None, Play Next, Go to Index, Go to Name).
+- **Follow Action** - The type of follow action to use (None, Play Next, Go to Index, Go to Name).
 
-	Go To Index - The index (int) of the next source to play.
+- **Go To Index** - The index (int) of the next source to play.
 
-	Go To Name - The name (str) of the next source to play.
+- **Go To Name** - The name (str) of the next source to play.
 
 
-TOP:
+####TOP:
 
-	TOP - The path to the TOP to be displayed.
+- **TOP** - The path to the TOP to be displayed.
 
-	Enable Cue Top - Enable this parameter to allow the Moviefilein TOP in the following parameter to be cued when THIS source is switched to.
+- **Enable Cue Top** - Enable this parameter to allow the Moviefilein TOP in the following parameter to be cued when THIS source is switched to.
 
-	Cue TOP - The path to the Moviefilein TOP to pulse the cue parameter on.
+- **Cue TOP** - The path to the Moviefilein TOP to pulse the cue parameter on.
 
-	Cue TOP Pulse - Send a cue pulse to the operator defined in the Cue TOP Parameter.
+- **Cue TOP Pulse** - Send a cue pulse to the operator defined in the Cue TOP Parameter.
 
-	Done On - When to evaluate the Follow Action (None, Timer, CHOP Channel).
+- **Done On** - When to evaluate the Follow Action (None, Timer, CHOP Channel).
 
 
-Crop / Tile:
+####Crop / Tile:
 
-	Crop Left - 0 to 1 fraction of where to crop the left side of the image.
+- **Crop Left** - 0 to 1 fraction of where to crop the left side of the image.
 
-	Crop Right - 0 to 1 fraction of where to crop the right side of the image.
+- **Crop Right** - 0 to 1 fraction of where to crop the right side of the image.
 
-	Crop Bottom - 0 to 1 fraction of where to crop the bottom of the image.
+- **Crop Bottom** - 0 to 1 fraction of where to crop the bottom of the image.
 
-	Crop Top - 0 to 1 fraction of where to crop to top of the image.
+- **Crop Top** - 0 to 1 fraction of where to crop to top of the image.
 
-	Crop Extend - Defines what to do with the image when the crop value exceeds the 0 to 1 space.
+- **Crop Extend** - Defines what to do with the image when the crop value exceeds the 0 to 1 space.
 
-	Transpose - Swap the x and y coordinate space of the image.
+- **Transpose** - Swap the x and y coordinate space of the image.
 
-	Flip X - Flip the x coordinate space of the image.
+- **Flip X** - Flip the x coordinate space of the image.
 
-	Flip Y - Flip the y coordinate space of the image.
+- **Flip Y** - Flip the y coordinate space of the image.
 
-	Repeat X - Number of times to repeat the image in x.
+- **Repeat X** - Number of times to repeat the image in x.
 
-	Repeat Y - Number of times to repeat the image in y.
+- **Repeat Y** - Number of times to repeat the image in y.
 
-	Reflect X - Reflect the image in x if repeated.
+- **Reflect X** - Reflect the image in x if repeated.
 
-	Reflect Y - Reflect the image in y if repeated.
+- **Reflect Y** - Reflect the image in y if repeated.
 
-	Overlap U - Overlap the image in u to create a soft edge.
+- **Overlap U** - Overlap the image in u to create a soft edge.
 
-	Overlap V - Overlap the image in v to create a soft edge.
+- **Overlap V** - Overlap the image in v to create a soft edge.
 
 
-Color:
+####Color:
 
-	Invert - Inverts the colors in the image. Black becomes white, white becomes black.
+- **Invert** - Inverts the colors in the image. Black becomes white, white becomes black.
 
-	Black Level - Any pixel with a value less than or equal to this will be black.  
+- **Black Level** - Any pixel with a value less than or equal to this will be black.  
 
-	Brightness - Increases or decreases the brightness of an image. Brightness can be considered the arithmetic mean of the RGB channels. The Brightness parameter adds or subtracts an offset into the R, G, and B channels.
+- **Brightness** - Increases or decreases the brightness of an image. Brightness can be considered the arithmetic mean of the RGB channels. The Brightness parameter adds or subtracts an offset into the R, G, and B channels.
 
-	Gamma - The Gamma parameter applies a gamma correction to the image. Gamma is the relationship between the brightness of a pixel as it appears on the screen, and the numerical value of that pixel.
+- **Gamma** - The Gamma parameter applies a gamma correction to the image. Gamma is the relationship between the brightness of a pixel as it appears on the screen, and the numerical value of that pixel.
 
-	Contrast - Contrast applies a scale factor (gain) to the RGB channels. Increasing contrast will brighten the light areas and darken the dark areas of the image, making the difference between the light and dark areas of the image stronger.
+- **Contrast** - Contrast applies a scale factor (gain) to the RGB channels. Increasing contrast will brighten the light areas and darken the dark areas of the image, making the difference between the light and dark areas of the image stronger.
 
-	Red - Clamps the maximum level of the red channel.
+- **Red** - Clamps the maximum level of the red channel.
 
-	Green - Clamps the maximum level of the green channel.
+- **Green** - Clamps the maximum level of the green channel.
 
-	Blue - Clamps the maximum level of the blue channel.
+- **Blue** - Clamps the maximum level of the blue channel.
 
-	Hue - Shifts the hue of the image.
+- **Hue** - Shifts the hue of the image.
 
-	Saturation - Adjusts the saturation of the image.
+- **Saturation** - Adjusts the saturation of the image.
 
-	Value - Adjusts the overall color value of the image.
+- **Value** - Adjusts the overall color value of the image.
 
 
-Transform:
+####Transform:
 
-	Pre-Fit Overlay - Defines how the image is placed over the component's resolution (Fill, Fit Horizontal, Fit Vertical, Fit Best, Fit Outside, Native Resolution).
+- **Pre-Fit Overlay** - Defines how the image is placed over the component's resolution (Fill, Fit Horizontal, Fit Vertical, Fit Best, Fit Outside, Native Resolution).
 
-	Justify Horizontal - Where to justify the image horizontally (Left, Center, Right).
+- **Justify Horizontal** - Where to justify the image horizontally (Left, Center, Right).
 
-	Justify Vertical - Where to justify the image vertically (Bottom, Center, Top).
+- **Justify Vertical** - Where to justify the image vertically (Bottom, Center, Top).
 
-	Extend Overlay - What to do with the negative space around the image if it exists.
+- **Extend Overlay** - What to do with the negative space around the image if it exists.
 
-	Translate - Translates the image in x and y (0 to 1 space).
+- **Translate** - Translates the image in x and y (0 to 1 space).
 
-	Scale - Scales the image in x and y (0 to 1 space).
+- **Scale** - Scales the image in x and y (0 to 1 space).
 
-	Rotate - Rotates the image.
+- **Rotate** - Rotates the image.
