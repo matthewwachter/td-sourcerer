@@ -159,6 +159,18 @@ Each source is provided a "Follow Action" parameter that defines what happens wh
 
 - **Done On** - When to evaluate the Follow Action (None, Timer, CHOP Channel).
 
+- **Timer Time (sec)** - Amount of time to play the file before the Follow Action is triggered.
+
+- **CHOP** - Path to a chop who's first channel can trigger the Follow Action when toggled from off (0) to on (1).
+
+- **Done Pulse** - Trigger the Follow Action immediately.
+
+- **Follow Action** - The type of follow action to use (None, Play Next, Go to Index, Go to Name).
+
+- **Go To Index** - The index (int) of the next source to play.
+
+- **Go To Name** - The name (str) of the next source to play.
+
 
 ####Crop / Tile
 
