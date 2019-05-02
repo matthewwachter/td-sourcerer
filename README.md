@@ -107,7 +107,7 @@ There are 3 primary types of transitions: **GLSL**, **File**, and **TOP**.
 
 - **TOP** - Specify a TOP in the scene
 	- Should start in black and end in white.
-	- A "transition_progress" channel is provided in the CHOP output of the Sourcerer component as to easily drive a generative transition while using the TOP transition type. 
+	- A "transition_progress" channel is provided in the CHOP output of the Sourcerer component to easily drive a generative transition while using the TOP transition type. 
 
 
 ###Follow Actions
@@ -145,7 +145,7 @@ Each source is provided a "Follow Action" parameter that defines what happens wh
 
 - **File** - The path of the file.
 
-- **File** Length Frames (read only) - The length of the file in frames.
+- **File Length Frames** (read only) - The length of the file in frames.
 
 - **Trim** - Enable file trimming.
 
