@@ -41,7 +41,7 @@ Sources are created, arranged, and triggered by using the buttons above the list
 
 The buttons at the top of the source list are as follows:
 
-- [add](images/add.jpg)Add a new source,
+- ![add](images/add.jpg) Add a new source,
 - Copy a Source,
 - Delete a source,
 - Move a source up in the list
