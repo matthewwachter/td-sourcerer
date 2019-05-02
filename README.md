@@ -72,28 +72,26 @@ Each source is provided a "Follow Action" parameter that defines what happens wh
 
 ####Settings:
 
-- **Resolution**
-	- The resolution of the background that the sources are composited over.
+- **Resolution** - The resolution of the background that the sources are composited over.
+
 
 ###Individual Source Parameters:
 
 ####Settings:
 
-- **Name**
-	- The name that is displayed in the list of sources. This is callable via the SwitchToSource method outlined below. Names should be unique in order for the SwitchToSource method to be able to find a source by name (str). 
+- **Name** - The name that is displayed in the list of sources. This is callable via the SwitchToSource method outlined below. Names should be unique in order for the SwitchToSource method to be able to find a source by name (str). 
 
-- **Source Type**
-	- Either File (location on disk) or TOP (path of a top in your scene). This selection enables/disables the two following parameter pages.
+- **Source Type** - Either File (location on disk) or TOP (path of a top in your scene). This selection enables/disables the two following parameter pages.
 
 - **Transition Type** - The type of transition to use when switching to THIS source.
 
 - **Transition Time** - The length of the transition when switching to THIS source.
 
-**Enable Command** - Enable the command in the Command parameter to be executed when THIS source is switched to.
+- **Enable Command** - Enable the command in the Command parameter to be executed when THIS source is switched to.
 
-**Command** - The python command to execute when THIS source is switched to if the Enable Command parameter is True.
+- **Command** - The python command to execute when THIS source is switched to if the Enable Command parameter is True.
 
-	Command Pulse - A test button to fire off the command.
+- **Command Pulse** - A test button to fire off the command.
 
 File:
 
