@@ -75,7 +75,10 @@ The transition **into** each source may be defined under the settings parameter 
 
 Transition time is set in seconds via the **Transition Time** parameter. Setting this parameter to 
 
-The **Transition Progress Shape** parameter sets the filter shape (or slope shape) of the transition's progress. This parameter can affect the feeling of the transition by rounding out the start and/or end of the transition's speed. There are 3 types of progress shapes to choose from:
+The **Transition Progress Shape** parameter sets the filter shape (or slope shape) of the transition's progress. This parameter can affect the feeling of the transition by rounding out the start and/or end of the transition's speed.
+
+There are 3 types of progress shapes to choose from:
+
 - **Box (Linear)** - A constant linear slope that can feel a bit mechanical. Usually desired for a custom transition file.
 - **Left Half Gaussian** - Starts with a linear slope shape but smoothens the end.
 - **Gaussian** - Buttery start and end. Feels very fluid.
