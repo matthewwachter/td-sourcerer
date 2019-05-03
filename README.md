@@ -124,9 +124,9 @@ There are 3 primary types of transitions: **GLSL**, **File**, and **TOP**.
 
 ###Follow Actions
 
-Each source is provided a **Follow Action** parameter that defines what happens when the source is done playing. Sourcerer can automatically play the next source or go to another source by index or name.
+Each source is provided a **Follow Action** parameter that defines what happens when the source is done playing. Sourcerer can automatically play the next source or go to another source by index or name. For those of you familiar with Ableton, this can be thought of as _clip follow actions_.
 
-The method of triggering a Follow Action depends on the **Source Type**.
+The user must define when the source is done playing by setting the **Done On** parameter. The method of triggering a Follow Action depends on the **Source Type**.
 
 - **File**
 	- Timer, 
@@ -138,7 +138,7 @@ The method of triggering a Follow Action depends on the **Source Type**.
 	- CHOP channel (on off to on)
 	- "Done" pulse parameter. 
 
-For those of you familiar with Ableton, this can be thought of as clip follow actions. 
+Once the **Done On** requirement is met, the specified **Follow Action** will be executed. 
 
 ##Configuration
 
