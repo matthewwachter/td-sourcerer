@@ -77,7 +77,7 @@ Transition time is set in seconds via the **Transition Time** parameter. Setting
 
 The **Transition Progress Shape** parameter sets the filter shape (or slope shape) of the transition's progress. This parameter can affect the feeling of the transition by rounding out the start and/or end of the transition's speed.
 
-There are 3 types of progress shapes to choose from:
+There are 4 types of progress shapes to choose from:
 
 - **Box (Linear)** - A constant linear slope that can feel a bit mechanical. Usually desired for a custom transition file.
 - **Left Half Gaussian** - Starts with a linear slope shape but smoothens the end.
@@ -143,9 +143,19 @@ Each source is provided a "Follow Action" parameter that defines what happens wh
 
 - **Source Type** - Either File (location on disk) or TOP (path of a top in your scene). This selection enables/disables the two following parameter pages.
 
+- **Transition Time** - The length of the transition when switching to _THIS_ source.
+
+- **Transition Progress Shape** - The slope shape of the transition progress.
+
+- **Custom Transition Shape** - A user provided CHOP with a single channel that starts at 0 and ends at 1.
+
 - **Transition Type** - The type of transition to use when switching to _THIS_ source.
 
-- **Transition Time** - The length of the transition when switching to _THIS_ source.
+- **GLSL Transition** - The GLSL transition type to use.
+
+- **Transition File** - A file on the disk that starts in black and ends in white.
+
+- **Transition TOP** - A user provided TOP that starts in black and ends in white. The **transition_progress** channel of the Sourcerer's chop output can be used to drive this transition.
 
 - **Enable Command** - Enable the command in the Command parameter to be executed when _THIS_ source is switched to.
 
