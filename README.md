@@ -124,10 +124,19 @@ There are 3 primary types of transitions: **GLSL**, **File**, and **TOP**.
 
 ###Follow Actions
 
-Each source is provided a "Follow Action" parameter that defines what happens when the source is done playing. Sourcerer can automatically play the next source or go to another source by index or name.
+Each source is provided a **Follow Action** parameter that defines what happens when the source is done playing. Sourcerer can automatically play the next source or go to another source by index or name.
 
-- While working with image/movie files, follow actions can be triggered by setting a timer, a number of times to play, a chop channel, or by pulsing the "Done" pulse parameter.
-- Generative (TOP) sources can either use a timer, a chop channel, or a "Done" pulse. 
+The method of triggering a Follow Action depends on the **Source Type**.
+
+- **File**
+	- Timer, 
+	- Number of times to play
+	- CHOP channel (on off to on)
+	- "Done" pulse parameter.
+- **TOP**
+	- Timer, 
+	- CHOP channel (on off to on)
+	- "Done" pulse parameter. 
 
 For those of you familiar with Ableton, this can be thought of as clip follow actions. 
 
@@ -144,7 +153,7 @@ For those of you familiar with Ableton, this can be thought of as clip follow ac
 
 ####Settings
 
-- **Name** - The name that is displayed in the list of sources. This is callable via the SwitchToSource method outlined below. Names should be unique in order for the SwitchToSource method to be able to find a source by name (str). 
+- **Name** - The name that is displayed in the list of sources. This is callable via the **SwitchToSource()** method outlined above.
 
 - **Source Type** - Either File (location on disk) or TOP (path of a top in your scene). This selection enables/disables the two following parameter pages.
 
@@ -229,7 +238,7 @@ For those of you familiar with Ableton, this can be thought of as clip follow ac
 
 - **Timer Time (sec)** - Amount of time to play the file before the Follow Action is triggered.
 
-- **CHOP** - Path to a chop who's first channel can trigger the Follow Action when toggled from off (0) to on (1).
+- **CHOP** - Path to a CHOP who's first channel can trigger the Follow Action when toggled from off (0) to on (1).
 
 - **Done Pulse** - Trigger the Follow Action immediately.
 
