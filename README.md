@@ -144,18 +144,22 @@ Once the **Done On** requirement has been met, the specified **Follow Action** w
 
 ###Callbacks
 
-Every time a source is switched to, a call to the callbacks script is made.
+Callbacks are made to the callbacks script located at the root level of the Sourcerer. This script can be edited by using the **Open Callbacks Script** button in the component's **Settings** parameter page. There are several callbacks available in the callbacks script:
 
-A few key pieces of information are passed into the callback method.
-- **index** - the index of the source in the list
-- **name** - the name of the source
-- **source** - a JSON dictionary that contains all of the source's parameters and their respective attributes.
+- **onSourceDone(index, name, source)** - Called when a source has signaled that it is done.
+	- **index** - The index of the source.
+	- **name** - The name of the source.
+	- **source** - A JSON dictionary that contains all of the source's parameters and their respective attributes.
 
-```python
-def onSwitchToSource(index, name, source):
-	#print(index, name, source)
-	return
-```
+- **onSwitchToSource(index, name, source)** - Called when a source is switched.
+	- **index** - The index of the source.
+	- **name** - The name of the source.
+	- **source** - A JSON dictionary that contains all of the source's parameters and their respective attributes.
+
+- **onTransitionComplete(index, name, source)** - Called when the transition to a new source has completed
+	- **index** - The index of the source.
+	- **name** - The name of the source.
+	- **source** - A JSON dictionary that contains all of the source's parameters and their respective attributes.
 
 ##Configuration
 
