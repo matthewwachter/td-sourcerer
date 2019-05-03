@@ -71,7 +71,15 @@ Examples:
 
 ###Transitions
 
-The transition **into** each source may be defined under the settings parameter page for each source. Transition time is set in seconds via the Transition Time parameter.
+The transition **into** each source may be defined under the settings parameter page for each source.
+
+Transition time is set in seconds via the **Transition Time** parameter. Setting this parameter to 
+
+The **Transition Progress Shape** parameter sets the filter shape (or slope shape) of the transition's progress. This parameter can affect the feeling of the transition by rounding out the start and/or end of the transition's speed. There are 3 types of progress shapes to choose from:
+- **Box (Linear)** - A constant linear slope that can feel a bit mechanical. Usually desired for a custom transition file.
+- **Left Half Gaussian** - Starts with a linear slope shape but smoothens the end.
+- **Gaussian** - Buttery start and end. Feels very fluid.
+- **Custom** - Provide the path to a CHOP in the **Custom Transition Shape** parameter. This CHOP should have a single channel with many samples that start at 0 and end at 1. Ideally the number of samples is a function of the desired transition time multiplied by the frame rate of the scene but this is not required as the samples will be automatically interpolated.
 
 There are 3 primary types of transitions: **GLSL**, **File**, and **TOP**.
 
@@ -103,11 +111,12 @@ There are 3 primary types of transitions: **GLSL**, **File**, and **TOP**.
 
 - **File** - Specify a file on the disk 
 	- Should start in black and end in white.
-	- The file is played over the duration of the transition set with the "Transition Time" parameter
+	- The file is played over the duration of the transition set with the **Transition Time** parameter
 
 - **TOP** - Specify a TOP in the scene
 	- Should start in black and end in white.
-	- A "transition_progress" channel is provided in the CHOP output of the Sourcerer component to easily drive a generative transition while using the TOP transition type. 
+	- A **transition_progress** channel is provided in the CHOP output of the Sourcerer component to easily drive a generative transition while using the TOP transition type. 
+
 
 
 ###Follow Actions
