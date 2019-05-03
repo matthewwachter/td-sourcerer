@@ -126,8 +126,8 @@ There are 3 primary types of transitions: **GLSL**, **File**, and **TOP**.
 
 Each source is provided a "Follow Action" parameter that defines what happens when the source is done playing. Sourcerer can automatically play the next source or go to another source by index or name.
 
--While working with image/movie files, follow actions can be triggered by setting a timer, a number of times to play, a chop channel, or by pulsing the "Done" pulse parameter.
--Generative (TOP) sources can either use a timer, a chop channel, or a "Done" pulse. 
+- While working with image/movie files, follow actions can be triggered by setting a timer, a number of times to play, a chop channel, or by pulsing the "Done" pulse parameter.
+- Generative (TOP) sources can either use a timer, a chop channel, or a "Done" pulse. 
 
 For those of you familiar with Ableton, this can be thought of as clip follow actions. 
 
