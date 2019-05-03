@@ -37,7 +37,9 @@ Sourcerer aims to consolidate all of the above mentioned into a list of "sources
 
 ##How to Use
 
-Sources can be created, arranged, and triggered by using the buttons above the list of sources. New sources may also be created by dropping files or TOPs directly into the source list. The selected source's parameters are editable in the top right section of the interface (labeled **Selected**) and the **Live** (or currently playing) source is editable in the bottom right section. Once changes have been made to a "Live" source, the user can click the **Save To Selected Source** button to write the parameter values back to the selected source if desired.
+Sources can be created, arranged, and triggered by using the buttons above the list of sources. New sources may also be created by dropping files or TOPs directly into the source list or by using the import/export buttons found in Sourcerer's **Settings** parameter page.
+
+The selected source's parameters are editable in the _top right_ section of the interface (**Selected**) and the currently playing (**Live**) source is editable in the _bottom right_ section. Once changes have been made to a **Live** source, the user can click the **Save To Selected Source** button to write the parameter values back to the selected source if desired.
 
 ###Buttons
 
