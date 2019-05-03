@@ -155,7 +155,7 @@ Each source is provided a "Follow Action" parameter that defines what happens wh
 
 - **Transition File** - A file on the disk that starts in black and ends in white.
 
-- **Transition TOP** - A user provided TOP that starts in black and ends in white. The **transition_progress** channel of the Sourcerer's chop output can be used to drive this transition.
+- **Transition TOP** - A user provided TOP that starts in black and ends in white. The **transition_progress** channel of the Sourcerer's CHOP output can be used to drive this transition.
 
 - **Enable Command** - Enable the command in the Command parameter to be executed when _THIS_ source is switched to.
 
@@ -199,11 +199,11 @@ Each source is provided a "Follow Action" parameter that defines what happens wh
 
 - **Timer Time (sec)** - Amount of time to play the file before the Follow Action is triggered.
 
-- **CHOP** - Path to a chop who's first channel can trigger the Follow Action when toggled from off (0) to on (1).
+- **CHOP** - Path to a CHOP who's first channel triggers the Follow Action when toggled from off (0) to on (1).
 
 - **Done Pulse** - Trigger the Follow Action immediately.
 
-- **Follow Action** - The type of follow action to use (None, Play Next, Go to Index, Go to Name).
+- **Follow Action** - The type of Follow Action to use (None, Play Next, Go to Index, Go to Name).
 
 - **Go To Index** - The index (int) of the next source to play.
 
