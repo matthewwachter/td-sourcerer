@@ -37,7 +37,7 @@ Sourcerer aims to consolidate all of the above mentioned into a list of "sources
 
 ##How to Use
 
-Sources are created, arranged, and triggered by using the buttons above the list of sources. The selected source's parameters are editable in the top right section of the interface (labeled "Selected") and the "Live" (or currently playing) source is editable in the bottom right section. Once changes have been made to a "Live" source, the user can click the "Save To Selected Source" button to write the parameter values back to the selected source if desired.
+Sources can be created, arranged, and triggered by using the buttons above the list of sources. New sources may also be created by dropping files or TOPs directly into the source list. The selected source's parameters are editable in the top right section of the interface (labeled **Selected**) and the **Live** (or currently playing) source is editable in the bottom right section. Once changes have been made to a "Live" source, the user can click the **Save To Selected Source** button to write the parameter values back to the selected source if desired.
 
 ###Buttons
 
@@ -112,11 +112,11 @@ There are 3 primary types of transitions: **GLSL**, **File**, and **TOP**.
 	- Ripple
 	- Stretch
 
-- **File** - Specify a file on the disk 
+- **File** - Specify a file on the disk.
 	- Should start in black and end in white.
 	- The file is played over the duration of the transition set with the **Transition Time** parameter
 
-- **TOP** - Specify a TOP in the scene
+- **TOP** - Specify a TOP in the scene.
 	- Should start in black and end in white.
 	- A **transition_progress** channel is provided in the CHOP output of the Sourcerer component to easily drive a generative transition while using the TOP transition type. 
 
@@ -129,14 +129,14 @@ Each source is provided a **Follow Action** parameter that defines what happens 
 The **Done On** parameter defines when to execute the **Follow Action**. The options available for this parameter choice depend on the selected **Source Type**.
 
 - **File**
-	- **Play (n) Times** - a number of times for the file to loop
-	- **Timer** - an amount of time to play for in seconds
-	- **CHOP** - a CHOP channel that toggles from 0 to 1
-	- **Done Pulse** - A pulse parameter usually used for testing.
+	- **Play (n) Times** - A number of times for the file to loop.
+	- **Timer** - An amount of time to play for in seconds.
+	- **CHOP** - A CHOP channel that toggles from 0 to 1.
+	- **Done Pulse** - A pulse parameter (usually used only in testing).
 - **TOP**
-	- **Timer** - an amount of time to play for in seconds
-	- **CHOP** - a CHOP channel that toggles from 0 to 1
-	- **Done Pulse** - A pulse parameter usually used for testing.
+	- **Timer** - An amount of time to play for in seconds.
+	- **CHOP** - A CHOP channel that toggles from 0 to 1.
+	- **Done Pulse** - A pulse parameter (usually used only in testing).
 
 Once the **Done On** requirement has been met, the specified **Follow Action** will be executed. 
 
@@ -148,6 +148,13 @@ Once the **Done On** requirement has been met, the specified **Follow Action** w
 
 - **Resolution** - The resolution of the background that the sources are composited over.
 
+- **BG Color** - The color of the background that the sources are composited over.
+
+- **Import** - Import a JSON file of sources. A prompt will appear to replace all or append/prepend/insert new.
+
+- **Export Selected** - Export the selected source as a JSON file.
+
+- **Export All** - Export all sources as a JSON file.
 
 ###Source Parameters
 
