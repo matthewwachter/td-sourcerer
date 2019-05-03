@@ -25,15 +25,15 @@ Apart from the many parameters that an image file or a generative source within 
 
 Additionally, one might need to deal with some playback logic like:
 	
-- How long should a source play/loop or how do we know it is finished?
-- What do we play next?
-- What type of transition do we need?
+- How long should a source play/loop or when is it finished?
+- What should be played next?
+- What type of transition is needed?
 - How long is the transition?
-- Do we need to run a script?
+- Do a script need to be run?
 
 If there are a great number of sources in a scene that require these effects or logic, things can quickly become quite taxing on the system. Often times, the programmer will find themselves in a position where they've run out of the physical resources needed to achieve their desired framerate.
 
-Sourcerer aims to consolidate all of the above mentioned into a list of "sources" (presets) that can be recalled via 2 interfaces: the UI buttons, and the promoted extension methods. 
+Sourcerer aims to consolidate all of the above mentioned into a list of "sources" (presets) that can be created and recalled via 2 interfaces: the UI buttons, and the promoted extension methods. 
 
 ##How to Use
 
@@ -140,7 +140,22 @@ The **Done On** parameter defines when to execute the **Follow Action**. The opt
 	- **CHOP** - A CHOP channel that toggles from 0 to 1.
 	- **Done Pulse** - A pulse parameter (usually used only in testing).
 
-Once the **Done On** requirement has been met, the specified **Follow Action** will be executed. 
+Once the **Done On** requirement has been met, the specified **Follow Action** will be executed.
+
+###Callbacks
+
+Every time a source is switched to, a call to the callbacks script is made.
+
+A few key pieces of information are passed into the callback method.
+- **index** - the index of the source in the list
+- **name** - the name of the source
+- **source** - a JSON dictionary that contains all of the source's parameters and their respective attributes.
+
+```python
+def onSwitchToSource(index, name, source):
+	#print(index, name, source)
+	return
+```
 
 ##Configuration
 
