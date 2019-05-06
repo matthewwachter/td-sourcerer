@@ -77,19 +77,6 @@ The transition **into** each source may be defined under the settings parameter 
 
 Transition time is set in seconds via the **Transition Time** parameter. Alternatively, if the **Use Global Transition Time** parameter is **True** then this time can be set using the **Global Transition Time** parameter found in Sourcerer's Settings parameter page.
 
-The **Transition Progress Shape** parameter sets the filter shape (or slope shape) of the transition's progress. This parameter can affect the feeling of the transition by rounding out the start and/or end of the transition's speed.
-
-There are several types of progress shapes to choose from:
-
-- **Linear** - A constant linear slope that can feel a bit mechanical. Usually this is desired for a custom transition file as the frames play back at a constant rate.
-- **Half Cosine (soft)** - Steepness: 1
-- **Half Cosine (hard)** - Steepness: 1.25
-- **Logistic (soft)** - Steepness: .5
-- **Logistic (hard)** - Steepness: 1
-- **Arctangent (soft)** - Steepness: .5
-- **Arctangent (hard)** - Steepness: 1
-- **Custom** - Provide the path to a CHOP in the **Custom Transition Shape** parameter. This CHOP should have a single channel with many samples that start at 0 and end at 1. Ideally the number of samples is a function of the desired transition time multiplied by the frame rate of the scene but this is not required as the samples will be automatically interpolated. The **S Curve CHOP** is the ideal operator to create this with.
-
 There are 3 primary types of transitions: **GLSL**, **File**, and **TOP**.
 
 - **GLSL** - Pick from a list of 24 premade transitions.
@@ -125,7 +112,20 @@ There are 3 primary types of transitions: **GLSL**, **File**, and **TOP**.
 
 - **TOP** - Specify a TOP in the scene.
 	- Should start in black and end in white.
-	- **transition_value** and **transition_progress** can be used to drive this transition. transition_progress is the linear transition progress and transition_value is the lookup value across the transition shape.
+	- **transition_progress** and **transition_value** can be used to drive a TOP transition. **transition_progress** is the transition's linear index (0 to 1) and **transition_value** is the lookup value across the **Transition Shape**.
+
+The **Transition Progress Shape** parameter sets the filter shape (or slope shape) of the transition's progress. This parameter can affect the feeling of the transition by rounding out the start and/or end of the transition's speed.
+
+There are several types of shapes to choose from:
+
+- **Linear** - A constant linear slope that can feel a bit mechanical. Usually this is desired for a custom transition file as the frames play back at a constant rate.
+- **Half Cosine (soft)** - Steepness: 1
+- **Half Cosine (hard)** - Steepness: 1.25
+- **Logistic (soft)** - Steepness: .5
+- **Logistic (hard)** - Steepness: 1
+- **Arctangent (soft)** - Steepness: .5
+- **Arctangent (hard)** - Steepness: 1
+- **Custom** - Provide the path to a CHOP in the **Custom Transition Shape** parameter. This CHOP should have a single channel with many samples that start at 0 and end at 1. Ideally the number of samples is a function of the desired transition time multiplied by the frame rate of the scene but this is not required as the samples will be automatically interpolated. The **S Curve CHOP** is the ideal operator to create this with.
 
 
 ###Follow Actions
