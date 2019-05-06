@@ -156,7 +156,7 @@ Callbacks are made to the callbacks script located at the root level of the Sour
 	- **name** - The name of the source.
 	- **source** - A JSON dictionary that contains all of the source's parameters and their respective attributes.
 
-- **onTransitionComplete(index, name, source)** - Called when the transition to a new source has completed
+- **onTransitionComplete(index, name, source)** - Called when the transition to a new source has completed.
 	- **index** - The index of the source.
 	- **name** - The name of the source.
 	- **source** - A JSON dictionary that contains all of the source's parameters and their respective attributes.
@@ -173,9 +173,9 @@ Callbacks are made to the callbacks script located at the root level of the Sour
 
 - **Import** - Import a JSON file of sources. A prompt will appear to replace all or append/prepend/insert new.
 
-- **Export Selected** - Export the selected source as a JSON file.
+- **Export** - Export the selected source as a JSON file.
 
-- **Export All** - Export all sources as a JSON file.
+
 
 ###Source Parameters
 
