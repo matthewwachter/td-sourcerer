@@ -23,15 +23,15 @@ Apart from the many parameters that an image file or a generative source within 
 - Scale
 - Rotation	
 
-Additionally, one might need to deal with some playback logic like:
+As well, one might need to deal with some playback logic like:
 	
-- How long should a source play/loop or when is it finished?
+- How long should a source play or loop?
 - What should be played next?
 - What type of transition is needed?
 - How long is the transition?
 - Do a script need to be run?
 
-If there are a great number of sources in a scene that require these effects or logic, things can quickly become quite taxing on the system. Often times, the programmer will find themselves in a position where they've run out of the physical resources needed to achieve their desired framerate.
+If there are a great number of sources in a scene that require effects or logic, things can quickly become quite taxing on the system. Often times, the programmer will find themselves in a position where they've run out of the physical resources needed to achieve their desired framerate.
 
 Sourcerer aims to consolidate all of the above mentioned into a list of "sources" (presets) that can be created and recalled via 2 interfaces: the UI buttons, and the promoted extension methods. 
 
@@ -75,16 +75,20 @@ Examples:
 
 The transition **into** each source may be defined under the settings parameter page for each source.
 
-Transition time is set in seconds via the **Transition Time** parameter. Setting this parameter to 
+Transition time is set in seconds via the **Transition Time** parameter. Alternatively, if the **Use Global Transition Time** parameter is **True** then this time can be set using the **Global Transition Time** parameter found in Sourcerer's Settings parameter page.
 
 The **Transition Progress Shape** parameter sets the filter shape (or slope shape) of the transition's progress. This parameter can affect the feeling of the transition by rounding out the start and/or end of the transition's speed.
 
-There are 4 types of progress shapes to choose from:
+There are several types of progress shapes to choose from:
 
-- **Box (Linear)** - A constant linear slope that can feel a bit mechanical. Usually desired for a custom transition file.
-- **Left Half Gaussian** - Starts with a linear slope shape but smoothens the end.
-- **Gaussian** - Buttery start and end. Feels very fluid.
-- **Custom** - Provide the path to a CHOP in the **Custom Transition Shape** parameter. This CHOP should have a single channel with many samples that start at 0 and end at 1. Ideally the number of samples is a function of the desired transition time multiplied by the frame rate of the scene but this is not required as the samples will be automatically interpolated.
+- **Linear** - A constant linear slope that can feel a bit mechanical. Usually this is desired for a custom transition file as the frames play back at a constant rate.
+- **Half Cosine (soft)** - Steepness: 1
+- **Half Cosine (hard)** - Steepness: 1.25
+- **Logistic (soft)** - Steepness: .5
+- **Logistic (hard)** - Steepness: 1
+- **Arctangent (soft)** - Steepness: .5
+- **Arctangent (hard)** - Steepness: 1
+- **Custom** - Provide the path to a CHOP in the **Custom Transition Shape** parameter. This CHOP should have a single channel with many samples that start at 0 and end at 1. Ideally the number of samples is a function of the desired transition time multiplied by the frame rate of the scene but this is not required as the samples will be automatically interpolated. The **S Curve CHOP** is the ideal operator to create this with.
 
 There are 3 primary types of transitions: **GLSL**, **File**, and **TOP**.
 
@@ -116,12 +120,12 @@ There are 3 primary types of transitions: **GLSL**, **File**, and **TOP**.
 
 - **File** - Specify a file on the disk.
 	- Should start in black and end in white.
-	- The file is played over the duration of the transition set with the **Transition Time** parameter
+	- The file is played over the duration of the transition set with the **Transition Time** parameter.
+	- Frames are automatically interpolated.
 
 - **TOP** - Specify a TOP in the scene.
 	- Should start in black and end in white.
-	- A **transition_progress** channel is provided in the CHOP output of the Sourcerer component to easily drive a generative transition while using the TOP transition type. 
-
+	- **transition_value** and **transition_progress** can be used to drive this transition. transition_progress is the linear transition progress and transition_value is the lookup value across the transition shape.
 
 
 ###Follow Actions
@@ -167,13 +171,19 @@ Callbacks are made to the callbacks script located at the root level of the Sour
 
 ####Settings
 
+- **Version** (read only) - The version of this component.
+
 - **Resolution** - The resolution of the background that the sources are composited over.
 
 - **BG Color** - The color of the background that the sources are composited over.
 
+- **Global Transition Time** - A global transition time setting that each source has access to.
+
 - **Import** - Import a JSON file of sources. A prompt will appear to replace all or append/prepend/insert new.
 
 - **Export** - Export the selected source as a JSON file.
+
+- **Edit Callbacks Script** - Opens the callbacks script.
 
 
 
@@ -185,12 +195,6 @@ Callbacks are made to the callbacks script located at the root level of the Sour
 
 - **Source Type** - Either File (location on disk) or TOP (path of a top in your scene). This selection enables/disables the two following parameter pages.
 
-- **Transition Time** - The length of the transition when switching to _THIS_ source.
-
-- **Transition Progress Shape** - The slope shape of the transition progress.
-
-- **Custom Transition Shape** - A user provided CHOP with a single channel that starts at 0 and ends at 1.
-
 - **Transition Type** - The type of transition to use when switching to _THIS_ source.
 
 - **GLSL Transition** - The GLSL transition type to use.
@@ -198,6 +202,14 @@ Callbacks are made to the callbacks script located at the root level of the Sour
 - **Transition File** - A file on the disk that starts in black and ends in white.
 
 - **Transition TOP** - A user provided TOP that starts in black and ends in white. The **transition_progress** channel of the Sourcerer's CHOP output can be used to drive this transition.
+
+- **Use Global Transition Time** - Uses the global transition time instead of the following parameter.
+
+- **Transition Time** - The length of the transition when switching to _THIS_ source.
+
+- **Transition Progress Shape** - The slope shape of the transition progress.
+
+- **Custom Transition Shape** - A user provided CHOP with a single channel that starts at 0 and ends at 1.
 
 - **Enable Command** - Enable the command in the Command parameter to be executed when _THIS_ source is switched to.
 
