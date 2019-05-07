@@ -1,5 +1,7 @@
 # Sourcerer
 
+####TouchDesigner 2019.14650
+
 ## Introduction
 
 Sourcerer is a media organization solution that provides an efficient and flexible system for the playback, processing, and switching of image files and generative sources from within a TouchDesigner scene.
