@@ -160,16 +160,22 @@ There are several types of shapes to choose from:
 - **Logistic (soft)** - Steepness: .5
 	- ![Logistic (soft)](images/curve_logistic_soft.jpg)
 
-- **Logistic (hard)** - Steepness: 1
+- **Logistic (hard)**
+	- Steepness: 1
 	- ![Logistic (hard)](images/curve_logistic_hard.jpg)
 
-- **Arctangent (soft)** - Steepness: .5
+- **Arctangent (soft)**
+	- Steepness: .5
 	- ![Arctangent (soft)](images/curve_atan_soft.jpg)
 
-- **Arctangent (hard)** - Steepness: 1
+- **Arctangent (hard)**
+	- Steepness: 1
 	- ![Arctangent (hard)](images/curve_atan_hard.jpg)
 
-- **Custom** - Provide the path to a CHOP in the **Custom Transition Shape** parameter. This CHOP should have a single channel with many samples that start at 0 and end at 1. Ideally the number of samples is a function of the desired transition time multiplied by the frame rate of the scene but this is not required as the samples will be automatically interpolated. The **S Curve CHOP** is the ideal operator to create this with.
+- **Custom**
+	- Provide the path to a CHOP in the **Custom Transition Shape** parameter. This CHOP should have a single channel with many samples that start at 0 and end at 1.
+	- Ideally the number of samples is a function of the desired transition time multiplied by the frame rate of the scene but this is not required as the samples will be automatically interpolated.
+	- The **S Curve CHOP** is the ideal operator to create this with.
 
 
 ###Follow Actions
