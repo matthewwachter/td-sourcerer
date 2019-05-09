@@ -97,22 +97,39 @@ There are 3 primary types of transitions: **GLSL**, **File**, and **TOP**.
 	- **Cloud Reveal**
 		- ![Cloud Reveal](images/transitions/cloud_reveal.gif)
 	- **Color Burn**
+		- ![Color Burn](images/transitions/color_burn.gif)
 	- **Color Distance**
+		- ![Color Distance](images/transitions/color_distance.gif)
 	- **Cross Warp**
+		- ![Cross Warp](images/transitions/cross_warp.gif)
 	- **Difference**
+		- ![Difference](images/transitions/difference.gif)
 	- **Dissolve**
+		- ![Dissolve](images/transitions/dissolve.gif)
 	- **Dreamy**
+		- ![Dreamy](images/transitions/dreamy.gif)
 	- **Fade**
+		- ![Fade](images/transitions/fade.gif)
 	- **Fade Black**
-	- **Linear Burn**
+		- ![Fade Black](images/transitions/fade_black.gif)
+	- **Linear Blur**
+		- ![Linear Blur](images/transitions/linear_blur.gif)
 	- **Maximum**
+		- ![Maximum](images/transitions/maximum.gif)
 	- **Morph 1**
+		- ![Morph 1](images/transitions/morph1.gif)
 	- **Morph 2**
+		- ![Morph 2](images/transitions/morph2.gif)
 	- **Perlin**
+		- ![Perlin](images/transitions/perlin.gif)
 	- **Radial Blur**
+		- ![Radial Blur](images/transitions/radial_blur.gif)
 	- **Random Squares**
+		- ![Random Squares](images/transitions/random_squares.gif)
 	- **Ripple**
+		- ![Ripple](images/transitions/ripple.gif)
 	- **Stretch**
+		- ![Stretch](images/transitions/stretch.gif)
 
 - **File** - Specify a file on the disk.
 	- Should start in black and end in white.
