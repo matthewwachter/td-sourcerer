@@ -85,7 +85,7 @@ There are 3 primary types of transitions: **GLSL**, **File**, and **TOP**.
 	- **Additive**
 		- ![Additive](images/transitions/additive.gif)
 	- **Average**
-		- ![Average](images/transitions/average2.gif)
+		- ![Average](images/transitions/average.gif)
 	- **Blinds**
 		- ![Blinds](images/transitions/blinds.gif)
 	- **Blood**
