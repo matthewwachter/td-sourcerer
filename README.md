@@ -121,8 +121,11 @@ The **Transition Progress Shape** parameter sets the filter shape (or slope shap
 There are several types of shapes to choose from:
 
 - **Linear** - A constant linear slope that can feel a bit mechanical. Usually this is desired for a custom transition file as the frames play back at a constant rate.
+	![Linear](images/curve_linear.jpg)
 - **Half Cosine (soft)** - Steepness: 1
+	![Half Cosine (soft)](images/curve_halfcos_soft.jpg)
 - **Half Cosine (hard)** - Steepness: 1.25
+	![Half Cosine (hard)](images/curve_halfcos_hard.jpg)
 - **Logistic (soft)** - Steepness: .5
 - **Logistic (hard)** - Steepness: 1
 - **Arctangent (soft)** - Steepness: .5
