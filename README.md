@@ -81,7 +81,8 @@ Transition time is set in seconds via the **Transition Time** parameter. Alterna
 
 There are 3 primary types of transitions: **GLSL**, **File**, and **TOP**.
 
-- **GLSL** - Pick from a list of 24 premade transitions.
+- **GLSL** - Pick from a list of 24 premade transitions. Many of the GLSL transitions have parameters that can be found in each source's **GLSL Transition** parameter page.
+
 	- **Additive**
 		- ![Additive](images/transitions/additive.gif)
 	- **Average**
@@ -255,6 +256,55 @@ Callbacks are made to the callbacks script located at the root level of the Sour
 - **Command** - The python command to execute when _THIS_ source is switched to if the Enable Command parameter is True.
 
 - **Command Pulse** - A test button to fire off the command.
+
+####GLSL Transition
+
+- **Blinds Num** - The number of "blinds" or divisions for the **Blinds** transition.
+
+- **Blood Seed** - The random seed for the **Blood** transition.
+
+- **Circle Reveal Fuzzy** - The edge blend amount for the **Circle Reveal** transition.
+
+- **Color Burn Color** - The color of the **Color Burn** transition.
+
+- **Color Distance Power** - The power of the **Color Distance** transition.
+
+- **Dissolve Seed** - The random seed for the **Dissolve** transition.
+
+- **Linear Blur Intensity** - The amount of blur that will be applied to the **Linear Blur** transition.
+
+- **Linear Blur Passes** - The number of blur iterations for the **Linear Blur** transition.
+
+- **Maximum Distance** - The distance from the maximum pixel value in which each pixel is transitioned for the **Maximum** transition.
+
+- **Maximum Fade-in Distance** - The pixel fade-in distance for the **Maximum** transition.
+
+- **Morph 1 Strength** - The strength of the morph function for the **Morph1** transition.
+
+- **Perlin Scale** - The size of the perlin noise for the **Perlin** transition.
+
+- **Perlin Seed** - The random seed for the **Perlin** transition.
+
+- **Perlin Smoothness** - The fade on the edge of the noise for the **Perlin** transition.
+
+- **Pixelize Squares Min** - The minimum size of the squares for the **Pixelize** transition.
+
+- **Pixelize Steps** - The number of steps to take in the **Pixelize** transition.
+
+- **Radial Blur Center** - The epicenter of the **Radial Blur** transition. 
+
+- **Random Squares Size** - The size of each square for the **Random Squares** transition.
+
+- **Random Squares Smoothness** - The fade on the edge of the squares for the **Random Squares** transition.
+
+- **Ripple Amplitude** - The intensity of the ripples for the **Ripple** transition.
+
+- **Ripple Center** - The epicenter of the ripples for the **Ripple** transition.
+
+- **Ripple Frequency** - The number of ripples for the **Ripple** transition.
+
+- **Ripple Speed** - The speed of the ripples for the **Ripple** transition.
+
 
 ####File
 
