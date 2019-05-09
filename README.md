@@ -83,8 +83,11 @@ There are 3 primary types of transitions: **GLSL**, **File**, and **TOP**.
 
 - **GLSL** - Pick from a list of 24 premade transitions.
 	- Additive
+	![Additive](images/transitions/additive.jpg)
 	- Average
+		![Average](images/transitions/average.jpg)
 	- Blinds
+			![Blinds](images/transitions/blinds.jpg)
 	- Blood
 	- Circle Reveal
 	- Circle Stretch
@@ -190,7 +193,13 @@ Callbacks are made to the callbacks script located at the root level of the Sour
 
 - **Import** - Import a JSON file of sources. A prompt will appear to replace all or append/prepend/insert new.
 
-- **Export** - Export the selected source as a JSON file.
+- **Export All** - Export all sources as a JSON file.
+
+- **Export Selected** - Export the selected source as a JSON file.
+
+- **Export Range** - Export the range of sources defined in the following parameter.
+
+- **Range** - The range of sources to export using the **Export Range** pulse parameter.
 
 - **Edit Callbacks Script** - Opens the callbacks script.
 
