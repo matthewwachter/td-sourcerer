@@ -82,34 +82,34 @@ Transition time is set in seconds via the **Transition Time** parameter. Alterna
 There are 3 primary types of transitions: **GLSL**, **File**, and **TOP**.
 
 - **GLSL** - Pick from a list of 24 premade transitions.
-	- Additive
-		> ![Additive](images/transitions/additive.jpg)
-	- Average
-		> ![Average](images/transitions/average.jpg)
-	- Blinds
+	- **Additive**
+		- ![Additive](images/transitions/additive.jpg)
+	- **Average**
+		- ![Average](images/transitions/average.jpg)
+	- **Blinds**
 		- ![Blinds](images/transitions/blinds.jpg)
-	- Blood
+	- **Blood**
 		- ![Blood](images/transitions/blood.jpg)
-	- Circle Reveal
-	- Circle Stretch
-	- Cloud Reveal
-	- Color Burn
-	- Color Distance
-	- Cross Warp
-	- Difference
-	- Dissolve
-	- Dreamy
-	- Fade
-	- Fade Black
-	- Linear Burn
-	- Maximum
-	- Morph 1
-	- Morph 2
-	- Perlin
-	- Radial Blur
-	- Random Squares
-	- Ripple
-	- Stretch
+	- **Circle Reveal**
+	- **Circle Stretch**
+	- **Cloud Reveal**
+	- **Color Burn**
+	- **Color Distance**
+	- **Cross Warp**
+	- **Difference**
+	- **Dissolve**
+	- **Dreamy**
+	- **Fade**
+	- **Fade Black**
+	- **Linear Burn**
+	- **Maximum**
+	- **Morph 1**
+	- **Morph 2**
+	- **Perlin**
+	- **Radial Blur**
+	- **Random Squares**
+	- **Ripple**
+	- **Stretch**
 
 - **File** - Specify a file on the disk.
 	- Should start in black and end in white.
