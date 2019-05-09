@@ -87,12 +87,15 @@ There are 3 primary types of transitions: **GLSL**, **File**, and **TOP**.
 	- **Average**
 		- ![Average](images/transitions/average.gif)
 	- **Blinds**
-		- ![Blinds](images/transitions/blinds.jpg)
+		- ![Blinds](images/transitions/blinds.gif)
 	- **Blood**
-		- ![Blood](images/transitions/blood.jpg)
+		- ![Blood](images/transitions/blood.gif)
 	- **Circle Reveal**
+		- ![Circle Reveal](images/transitions/circle_reveal.gif)
 	- **Circle Stretch**
+		- ![Circle Stretch](images/transitions/circle_stretch.gif)
 	- **Cloud Reveal**
+		- ![Cloud Reveal](images/transitions/cloud_reveal.gif)
 	- **Color Burn**
 	- **Color Distance**
 	- **Cross Warp**
