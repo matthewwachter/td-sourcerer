@@ -145,20 +145,30 @@ The **Transition Progress Shape** parameter sets the filter shape (or slope shap
 
 There are several types of shapes to choose from:
 
-- **Linear** - A constant linear slope that can feel a bit mechanical. Usually this is desired for a custom transition file as the frames play back at a constant rate.
-	![Linear](images/curve_linear.jpg)
-- **Half Cosine (soft)** - Steepness: 1
-	![Half Cosine (soft)](images/curve_halfcos_soft.jpg)
-- **Half Cosine (hard)** - Steepness: 1.25
-	![Half Cosine (hard)](images/curve_halfcos_hard.jpg)
+- **Linear**
+	- A constant linear slope that can feel a bit mechanical. Usually this is desired for a custom transition file as the frames play back at a constant rate.
+	- ![Linear](images/curve_linear.jpg)
+
+- **Half Cosine (soft)**
+	- Steepness: 1
+	- ![Half Cosine (soft)](images/curve_halfcos_soft.jpg)
+
+- **Half Cosine (hard)**
+	- Steepness: 1.25
+	- ![Half Cosine (hard)](images/curve_halfcos_hard.jpg)
+
 - **Logistic (soft)** - Steepness: .5
-	![Logistic (soft)](images/curve_logistic_soft.jpg)
+	- ![Logistic (soft)](images/curve_logistic_soft.jpg)
+
 - **Logistic (hard)** - Steepness: 1
-	![Logistic (hard)](images/curve_logistic_hard.jpg)
+	- ![Logistic (hard)](images/curve_logistic_hard.jpg)
+
 - **Arctangent (soft)** - Steepness: .5
-	![Arctangent (soft)](images/curve_atan_soft.jpg)
+	- ![Arctangent (soft)](images/curve_atan_soft.jpg)
+
 - **Arctangent (hard)** - Steepness: 1
-	![Arctangent (hard)](images/curve_atan_hard.jpg)
+	- ![Arctangent (hard)](images/curve_atan_hard.jpg)
+
 - **Custom** - Provide the path to a CHOP in the **Custom Transition Shape** parameter. This CHOP should have a single channel with many samples that start at 0 and end at 1. Ideally the number of samples is a function of the desired transition time multiplied by the frame rate of the scene but this is not required as the samples will be automatically interpolated. The **S Curve CHOP** is the ideal operator to create this with.
 
 
