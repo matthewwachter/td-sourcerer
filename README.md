@@ -83,9 +83,9 @@ There are 3 primary types of transitions: **GLSL**, **File**, and **TOP**.
 
 - **GLSL** - Pick from a list of 24 premade transitions.
 	- Additive
-	![Additive](images/transitions/additive.jpg)
+		> ![Additive](images/transitions/additive.jpg)
 	- Average
-		- ![Average](images/transitions/average.jpg)
+		> ![Average](images/transitions/average.jpg)
 	- Blinds
 		- ![Blinds](images/transitions/blinds.jpg)
 	- Blood
