@@ -173,7 +173,8 @@ There are several types of shapes to choose from:
 	- ![Arctangent (hard)](images/curve_atan_hard.jpg)
 
 - **Custom**
-	- Provide the path to a CHOP in the **Custom Transition Shape** parameter. This CHOP should have a single channel with many samples that start at 0 and end at 1.
+	- Provide the path to a CHOP in the **Custom Transition Shape** parameter.
+	- This CHOP should have a single channel with many samples that **start at 0** and **end at 1**.
 	- Ideally the number of samples is a function of the desired transition time multiplied by the frame rate of the scene but this is not required as the samples will be automatically interpolated.
 	- The **S Curve CHOP** is the ideal operator to create this with.
 
