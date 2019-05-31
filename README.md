@@ -103,6 +103,10 @@ There are 3 primary types of transitions: **GLSL**, **File**, and **TOP**.
 		- ![Color Distance](images/transitions/color_distance.gif)
 	- **Cross Warp**
 		- ![Cross Warp](images/transitions/cross_warp.gif)
+	- **Cube Left**
+		- ![Cube Left](images/transitions/cube_left.gif)
+	- **Cube Right**
+		- ![Cube Right](images/transitions/cube_right.gif)
 	- **Difference**
 		- ![Difference](images/transitions/difference.gif)
 	- **Dissolve**
@@ -148,6 +152,14 @@ There are several types of shapes to choose from:
 - **Linear**
 	- A constant linear slope that can feel a bit mechanical. Usually this is desired for a custom transition file as the frames play back at a constant rate.
 	- ![Linear](images/curve_linear.jpg)
+
+- **Ease In**
+	- A Logistic curve with a bias of -.2.
+	- ![Ease In](images/curve_ease_in.jpg)
+
+- **Ease Out**
+	- A Logistic curve with a bias of .2.
+	- ![Ease Out](images/curve_ease_out.jpg)
 
 - **Half Cosine (soft)**
 	- Steepness: 1
