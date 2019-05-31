@@ -135,6 +135,11 @@ There are 3 primary types of transitions: **GLSL**, **File**, and **TOP**.
 		- ![Ripple](images/transitions/ripple.gif)
 	- **Stretch**
 		- ![Stretch](images/transitions/stretch.gif)
+	- **Swap Left**
+		- ![Swap Left](images/transitions/swap_left.gif)
+	- **Swap Right**
+		- ![Swap Right](images/transitions/swap_right.gif)
+
 
 - **File** - Specify a file on the disk.
 	- Should start in black and end in white.
