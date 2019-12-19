@@ -1,6 +1,6 @@
 # Sourcerer
 
-####TouchDesigner 2019.15840
+#### TouchDesigner 2019.15840
 
 ## Introduction
 
@@ -37,13 +37,13 @@ If there are a great number of sources in a scene that require effects or logic,
 
 Sourcerer aims to consolidate all of the above mentioned into a list of "sources" (presets) that can be created and recalled via 2 interfaces: the UI buttons, and the promoted extension methods. 
 
-##How to Use
+## How to Use
 
 Sources can be created, arranged, and triggered by using the buttons above the list of sources. New sources may also be created by dropping files or TOPs directly into the source list or by using the import/export buttons found in Sourcerer's **Settings** parameter page.
 
 The selected source's parameters are editable in the _top right_ section of the interface (**Selected**) and the currently playing (**Live**) source is editable in the _bottom right_ section. Once changes have been made to a **Live** source, the user can click the **Save To Selected Source** button to write the parameter values back to the selected source if desired.
 
-###Buttons
+### Buttons
 
 The buttons at the top of the source list are as follows:
 
@@ -55,7 +55,7 @@ The buttons at the top of the source list are as follows:
 - ![switch_to_source](images/switch_to_source.jpg) Switch to the selected source
 - ![edit](images/edit.jpg) Enable/Disable the editing interface to save system resources.
 
-###Promoted Extension Method
+### Promoted Extension Method
 
 The user may also choose to use the promoted extension method SwitchToSource(source) where the "source" variable can either be an integer value to switch to a source by index or a string value to switch to a source by name.
 
@@ -73,7 +73,7 @@ Examples:
 	op('Sourcerer').SwitchToSource('Blackout')
 	```
 
-###Transitions
+### Transitions
 
 The transition **into** each source may be defined under the settings parameter page for each source.
 
@@ -196,7 +196,7 @@ There are several types of shapes to choose from:
 	- The **S Curve CHOP** is the ideal operator to create this with.
 
 
-###Follow Actions
+### Follow Actions
 
 Each source is provided a **Follow Action** parameter that defines what happens when the source is done playing. Sourcerer can automatically play the next source or go to another source by index or name. For those of you familiar with Ableton, this can be thought of as _clip follow actions_.
 
@@ -214,7 +214,7 @@ The **Done On** parameter defines when to execute the **Follow Action**. The opt
 
 Once the **Done On** requirement has been met, the specified **Follow Action** will be executed.
 
-###Callbacks
+### Callbacks
 
 Callbacks are made to the callbacks script located at the root level of the Sourcerer. This script can be edited by using the **Open Callbacks Script** button in the component's **Settings** parameter page. There are several callbacks available in the callbacks script:
 
@@ -233,11 +233,11 @@ Callbacks are made to the callbacks script located at the root level of the Sour
 	- **name** - The name of the source.
 	- **source** - A JSON dictionary that contains all of the source's parameters and their respective attributes.
 
-##Configuration
+## Configuration
 
-###Sourcerer Parameters
+### Sourcerer Parameters
 
-####Settings
+#### Settings
 
 - **Version** (read only) - The version of this component.
 
@@ -261,9 +261,9 @@ Callbacks are made to the callbacks script located at the root level of the Sour
 
 
 
-###Source Parameters
+### Source Parameters
 
-####Settings
+#### Settings
 
 - **Name** - The name that is displayed in the list of sources. This is callable via the **SwitchToSource()** method outlined above.
 
@@ -291,7 +291,7 @@ Callbacks are made to the callbacks script located at the root level of the Sour
 
 - **Command Pulse** - A test button to fire off the command.
 
-####GLSL Transition
+#### GLSL Transition
 
 - **Blinds Num** - The number of "blinds" or divisions for the **Blinds** transition.
 
@@ -340,7 +340,7 @@ Callbacks are made to the callbacks script located at the root level of the Sour
 - **Ripple Speed** - The speed of the ripples for the **Ripple** transition.
 
 
-####File
+#### File
 
 - **File** - The path of the file.
 
@@ -387,7 +387,7 @@ Callbacks are made to the callbacks script located at the root level of the Sour
 - **Go To Name** - The name (str) of the next source to play.
 
 
-####TOP
+#### TOP
 
 - **TOP** - The path to the TOP to be displayed.
 
@@ -412,7 +412,7 @@ Callbacks are made to the callbacks script located at the root level of the Sour
 - **Go To Name** - The name (str) of the next source to play.
 
 
-####Crop / Tile
+#### Crop / Tile
 
 - **Crop Left** - 0 to 1 fraction of where to crop the left side of the image.
 
@@ -443,7 +443,7 @@ Callbacks are made to the callbacks script located at the root level of the Sour
 - **Overlap V** - Overlap the image in v to create a soft edge.
 
 
-####Color
+#### Color
 
 - **Invert** - Inverts the colors in the image. Black becomes white, white becomes black.
 
@@ -468,7 +468,7 @@ Callbacks are made to the callbacks script located at the root level of the Sour
 - **Value** - Adjusts the overall color value of the image.
 
 
-####Transform
+#### Transform
 
 - **Pre-Fit Overlay** - Defines how the image is placed over the component's resolution (Fill, Fit Horizontal, Fit Vertical, Fit Best, Fit Outside, Native Resolution).
 
