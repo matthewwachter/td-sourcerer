@@ -75,6 +75,13 @@ Examples:
 
 ### Transitions
 
+Inside the Sourcerer component you will find a transition component that uses a single GLSL TOP to handle all transition modes. The pixel shader for this top can be found in the **scripts** folder (scripts/transitions.glsl).
+
+These transitions were ported from these two locations:
+
+	- [Jeffers](https://forum.derivative.ca/t/transition-component/1859)
+	- [gl-transitions](https://gl-transitions.com/)
+
 The transition **into** each source may be defined under the settings parameter page for each source.
 
 Transition time is set in seconds via the **Transition Time** parameter. Alternatively, if the **Use Global Transition Time** parameter is **True** then this time can be set using the **Global Transition Time** parameter found in Sourcerer's Settings parameter page.
