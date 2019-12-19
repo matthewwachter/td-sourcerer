@@ -1,8 +1,11 @@
 # Sourcerer
 
 #### TouchDesigner 2019.15840
+
 License: MIT
+
 [Matthew Wachter](https://www.matthewwachter.com)
+
 [VT Pro Design](https://www.vtprodesign.com)
 
 ## Introduction
