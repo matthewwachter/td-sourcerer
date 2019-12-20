@@ -1,6 +1,0 @@
-### TO DO ###
-
-bugs:
-- json import appends digits to sources
-- "Done On Pulse" not functional
-- bad "commandScript" reference in source master comp that prevents Command functions from executing
