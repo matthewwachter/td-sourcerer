@@ -85,8 +85,8 @@ Inside the Sourcerer component you will find a transition component that uses a 
 
 These transitions were ported from these two locations:
 
-	- [Jeffers](https://forum.derivative.ca/t/transition-component/1859)
-	- [gl-transitions](https://gl-transitions.com/)
+- [Jeffers](https://forum.derivative.ca/t/transition-component/1859)
+- [gl-transitions](https://gl-transitions.com/)
 
 The transition **into** each source may be defined under the settings parameter page for each source.
 
