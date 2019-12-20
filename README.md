@@ -81,7 +81,7 @@ Examples:
 
 ### Transitions
 
-Inside the Sourcerer component you will find a transition component that uses a single GLSL TOP to handle all transition modes. The pixel shader for this top can be found in the **scripts** folder (scripts/transitions.glsl).
+Inside the Sourcerer component you will find a transition component that uses a single GLSL TOP to handle all transition modes. The pixel shader for this top can be found in [scripts/transitions.glsl](scripts/transitions.glsl).
 
 These transitions were ported from these two locations:
 
