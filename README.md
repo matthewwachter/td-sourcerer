@@ -15,7 +15,7 @@ Sourcerer is a media organization solution that provides an efficient and flexib
 ![sourcerer_screen1](images/screen1.jpg)
 
 ## Description
-In a typical show file, there may be a large number of sources that need to be displayed. Without the help of any organizational tools, a programmer might find themselves lost in a "Sourcerer's Apprentice" type disaster of nodes and wires plugged into one absolute unit of a Switch TOP. This can leave the wizard feeling overwhelmed with the complexity of their scene and when a simple change needs to be made to a particular source, they might have a difficult time finding that magical elusive operator that needs a slight tweak.
+In a typical show file, there may be a large number of sources that need to be displayed. Without the help of any organizational tools, a programmer might find themselves lost in a *Sorcerer's Apprentice* type disaster of nodes and wires plugged into one absolute unit of a Switch TOP. This can leave the wizard feeling overwhelmed with the complexity of their scene and when a simple change needs to be made to a particular source, they might have a difficult time finding that magical elusive operator that needs a slight tweak.
 
 Apart from the many parameters that an image file or a generative source within the scene might have, a few post-processing effects might need to be applied to a source such as:
 
@@ -39,7 +39,7 @@ As well, one might need to deal with some playback logic like:
 - How long is the transition?
 - Do a script need to be run?
 
-If there are a great number of sources in a scene that require effects or logic, things can quickly become quite taxing on the system. Often times, the programmer will find themselves in a position where they've run out of the physical resources needed to achieve their desired framerate.
+If there are a great number of sources in a scene that require effects or logic, things can quickly become quite taxing on the system. Often times, the programmer will find themselves in a position where they've run out of the physical resources needed to achieve their desired frame-rate.
 
 Sourcerer aims to consolidate all of the above mentioned into a list of "sources" (presets) that can be created and recalled via 2 interfaces: the UI buttons, and the promoted extension methods. 
 
@@ -94,7 +94,7 @@ Transition time is set in seconds via the **Transition Time** parameter. Alterna
 
 There are 3 primary types of transitions: **GLSL**, **File**, and **TOP**.
 
-- **GLSL** - Pick from a list of 24 premade transitions. Many of the GLSL transitions have parameters that can be found in each source's **GLSL Transition** parameter page.
+- **GLSL** - Pick from a list of 24 pre-made transitions. Many of the GLSL transitions have parameters that can be found in each source's **GLSL Transition** parameter page.
 
 	- **Additive**
 		- ![Additive](images/transitions/additive.gif)
@@ -165,7 +165,7 @@ There are 3 primary types of transitions: **GLSL**, **File**, and **TOP**.
 
 The **Transition Progress Shape** parameter sets the filter shape (or slope shape) of the transition's progress. This parameter can affect the feeling of the transition by rounding out the start and/or end of the transition's speed.
 
-There are several types of shapes to choose from:
+There are several types of transition shapes to choose from:
 
 - **Linear**
 	- A constant linear slope that can feel a bit mechanical. Usually this is desired for a custom transition file as the frames play back at a constant rate.
@@ -328,7 +328,7 @@ Callbacks are made to the callbacks script located at the root level of the Sour
 
 - **Morph 1 Strength** - The strength of the morph function for the **Morph1** transition.
 
-- **Perlin Scale** - The size of the perlin noise for the **Perlin** transition.
+- **Perlin Scale** - The size of the Perlin noise for the **Perlin** transition.
 
 - **Perlin Seed** - The random seed for the **Perlin** transition.
 
@@ -404,9 +404,9 @@ Callbacks are made to the callbacks script located at the root level of the Sour
 
 - **TOP** - The path to the TOP to be displayed.
 
-- **Enable Cue Top** - Enable this parameter to allow the Moviefilein TOP in the following parameter to be cued when <u>THIS</u> source is switched to.
+- **Enable Cue Top** - Enable this parameter to allow the MovieFileIn TOP in the following parameter to be cued when <u>THIS</u> source is switched to.
 
-- **Cue TOP** - The path to the Moviefilein TOP to pulse the cue parameter on.
+- **Cue TOP** - The path to the MovieFileIn TOP to pulse the cue parameter on.
 
 - **Cue TOP Pulse** - Send a cue pulse to the operator defined in the Cue TOP Parameter.
 
