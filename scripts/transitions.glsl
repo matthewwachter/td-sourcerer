@@ -687,17 +687,19 @@ vec4 RadialBlur(vec2 uv)
 	vec2 normToUV = toUV;
 	
 	
-	vec4 c1 = vec4(0,0,0,0);
+	vec4 c1, c2 = vec4(0,0,0,0);
 	int count = 24;
 	float s = progress * 0.02;
 	
 	for(int i=0; i<count; i++)
 	{
 		c1 += getFromColor( uv - normToUV * s * i); 
+		c2 += getToColor( uv - normToUV * s * i);
 	}
 	
 	c1 /= count;
-		vec4 c2 = getToColor( uv );
+	c2 /= count;
+	// 	vec4 
 
 	return mix(c1, c2, progress);
 }
