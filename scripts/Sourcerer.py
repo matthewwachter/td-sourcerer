@@ -151,7 +151,7 @@ class Sourcerer:
 
         # set the transition time
         if self._getParVal(settings['Useglobaltransitiontime']):
-            trans_time = tcomp_par.Transitiontime
+            trans_time = self.ownerComp.par.Globaltransitiontime.eval()
         else:
             trans_time = self._getParVal(settings['Transitiontime'])
         tcomp_par.Transitiontime = trans_time
