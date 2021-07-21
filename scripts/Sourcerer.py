@@ -12,7 +12,7 @@ class Sourcerer:
         # The component to which this extension is attached
         self.ownerComp = ownerComp
         self.DataComp = ownerComp.op('data')
-        self.transitionComp = ownerComp.op('transitions')
+        #self.transitionComp = ownerComp.op('transitions')
         self.switcherState = ownerComp.op('state')
         self.selectedSourceComp = ownerComp.op('selectedSource')
         self.extraAttrs = [
@@ -71,7 +71,7 @@ class Sourcerer:
 
     def SwitchToSource(self, source):
         state = self.stored['State']
-        next_state = 1-state
+        next_state = 0
 
         source_comp = self.ownerComp.op('source' + str(next_state))
 
@@ -107,60 +107,60 @@ class Sourcerer:
 
         # set the transition
         settings = source['Settings']
-        tcomp_par = self.transitionComp.par
+        # tcomp_par = self.transitionComp.par
 
-        trans_type = self._getParVal(settings['Transitiontype'])
-        tcomp_par.Transitiontype = trans_type
+        # trans_type = self._getParVal(settings['Transitiontype'])
+        # tcomp_par.Transitiontype = trans_type
 
-        if trans_type == 'glsl':
-            glsl_trans = self._getParVal(settings['Glsltransition'])
-            tcomp_par.Glsltransition = glsl_trans
+        # if trans_type == 'glsl':
+        #     glsl_trans = self._getParVal(settings['Glsltransition'])
+        #     tcomp_par.Glsltransition = glsl_trans
 
-            glsl_transitions = {
-                'Blinds': ['Blindsnum'],
-                'Blood': ['Seed'],
-                'Circle Reveal': ['Circlerevealfuzzy'],
-                'Color Burn': ['Colorburncolor'],
-                'Color Distance': ['Colordistancepower'],
-                'Cube Left': ['Cubeperspective', 'Cubeunzoom'],
-                'Cube Right': ['Cubeperspective', 'Cubeunzoom'],
-                'Dissolve': ['Seed'],
-                'Fade Color': ['Fadecolor'],
-                'Linear Blur': ['Linearblurintensity', 'Linearblurpasses'],
-                'Maximum': ['Maximumdistance', 'Maximumfadeindistance'],
-                'Morph1': ['Morph1strength'],
-                'Perlin': ['Perlinscale', 'Seed', 'Perlinsmoothness'],
-                'Pixelize': ['Pixelizesquaresmin'],
-                'Radial Blur': ['Radialblurcenter'],
-                'Random Squares': ['Randomsquaressize', 'Randomsquaressmoothness'],
-                'Ripple': ['Rippleamplitude', 'Ripplecenter', 'Ripplefrequency', 'Ripplespeed'],
-                'Slide': ['Slidedirection'],
-                'Swap Left': ['Swapperspective', 'Swapdepth'],
-                'Swap Right': ['Swapperspective', 'Swapdepth']
-            }
-            # print(glsl_trans)
-            if glsl_trans in glsl_transitions.keys():
-                transition_pars = glsl_transitions[glsl_trans]
-                for p in transition_pars:
-                    self._setParVal(source['GLSL Transition'][p], self.transitionComp)
+        #     glsl_transitions = {
+        #         'Blinds': ['Blindsnum'],
+        #         'Blood': ['Seed'],
+        #         'Circle Reveal': ['Circlerevealfuzzy'],
+        #         'Color Burn': ['Colorburncolor'],
+        #         'Color Distance': ['Colordistancepower'],
+        #         'Cube Left': ['Cubeperspective', 'Cubeunzoom'],
+        #         'Cube Right': ['Cubeperspective', 'Cubeunzoom'],
+        #         'Dissolve': ['Seed'],
+        #         'Fade Color': ['Fadecolor'],
+        #         'Linear Blur': ['Linearblurintensity', 'Linearblurpasses'],
+        #         'Maximum': ['Maximumdistance', 'Maximumfadeindistance'],
+        #         'Morph1': ['Morph1strength'],
+        #         'Perlin': ['Perlinscale', 'Seed', 'Perlinsmoothness'],
+        #         'Pixelize': ['Pixelizesquaresmin'],
+        #         'Radial Blur': ['Radialblurcenter'],
+        #         'Random Squares': ['Randomsquaressize', 'Randomsquaressmoothness'],
+        #         'Ripple': ['Rippleamplitude', 'Ripplecenter', 'Ripplefrequency', 'Ripplespeed'],
+        #         'Slide': ['Slidedirection'],
+        #         'Swap Left': ['Swapperspective', 'Swapdepth'],
+        #         'Swap Right': ['Swapperspective', 'Swapdepth']
+        #     }
+        #     # print(glsl_trans)
+        #     if glsl_trans in glsl_transitions.keys():
+        #         transition_pars = glsl_transitions[glsl_trans]
+        #         for p in transition_pars:
+        #             self._setParVal(source['GLSL Transition'][p], self.transitionComp)
 
-        elif trans_type == 'file':
-            tcomp_par.Transitionfile = self._getParVal(settings['Transitionfile'])
-        elif trans_type == 'top':
-            tcomp_par.Transitiontop = self._getParVal(settings['Transitiontop'])
+        # elif trans_type == 'file':
+        #     tcomp_par.Transitionfile = self._getParVal(settings['Transitionfile'])
+        # elif trans_type == 'top':
+        #     tcomp_par.Transitiontop = self._getParVal(settings['Transitiontop'])
 
-        # set the transition time
-        if self._getParVal(settings['Useglobaltransitiontime']):
-            trans_time = self.ownerComp.par.Globaltransitiontime.eval()
-        else:
-            trans_time = self._getParVal(settings['Transitiontime'])
-        tcomp_par.Transitiontime = trans_time
+        # # set the transition time
+        # if self._getParVal(settings['Useglobaltransitiontime']):
+        #     trans_time = self.ownerComp.par.Globaltransitiontime.eval()
+        # else:
+        #     trans_time = self._getParVal(settings['Transitiontime'])
+        # tcomp_par.Transitiontime = trans_time
 
-        # set the progress shape
-        trans_shape = self._getParVal(settings['Transitionshape'])
-        tcomp_par.Transitionshape = trans_shape
-        if trans_shape == 'custom':
-            tcomp_par.Customtransitionshape = self._getParVal(settings['Customtransitionshape'])
+        # # set the progress shape
+        # trans_shape = self._getParVal(settings['Transitionshape'])
+        # tcomp_par.Transitionshape = trans_shape
+        # if trans_shape == 'custom':
+        #     tcomp_par.Customtransitionshape = self._getParVal(settings['Customtransitionshape'])
 
         # update the stored information
         self.stored['State'] = next_state
