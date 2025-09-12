@@ -467,8 +467,15 @@ class Sourcerer:
     def StoreSource(self, source_comp, source):
         # create a json op from the source comp
         jsonOp = TDJSON.opToJSONOp(source_comp, extraAttrs=self.extraAttrs, forceAttrLists=False)
+        # Ensure the jsonOp is JSON-serializable before storing
+        try:
+            serializable_jsonOp = json.loads(json.dumps(jsonOp))
+        except Exception as e:
+            debug('Error serializing source for storage:', e)
+            serializable_jsonOp = jsonOp  # fallback, but this may still cause issues
+
         # store the json op to the selected source
-        self.stored['Sources'][source] = jsonOp
+        self.stored['Sources'][source] = serializable_jsonOp
         return
 
     # initialize the selected source
@@ -524,8 +531,15 @@ class Sourcerer:
 
         source = self._checkUniqueName(source)
 
+        # Ensure the source is JSON-serializable before storing
+        try:
+            serializable_source = json.loads(json.dumps(source))
+        except Exception as e:
+            debug('Error serializing source for storage:', e)
+            serializable_source = source  # fallback, but this may still cause issues
+
         # insert the template into the sources list
-        self.stored['Sources'].insert(s+1, source)
+        self.stored['Sources'].insert(s+1, serializable_source)
 
         self.SelectSource(s+1)
 
@@ -584,16 +598,18 @@ class Sourcerer:
     def DeleteSource(self):
         # get the selected source
         s = self.stored['SelectedSource']
-
+        print(s)
         # get the list of sources
         a = self.stored['Sources']
 
         if len(a) > 1:
             # pop the source from the list
             a.pop(s)
-
-            # select the source
-            self.SelectSource(s)
+            # If we deleted the last item, select the new last item
+            if s >= len(a):
+                self.SelectSource(len(a) - 1)
+            else:
+                self.SelectSource(s)
         return
 
     # select an source
