@@ -25,7 +25,8 @@ class Sourcerer:
         ]
 
         storedItems = [
-            {'name': 'Sources', 'default': [], 'dependable': True},
+            {'name': 'Sources', 'default': [], 'dependable': False},
+            {'name': 'SourceList', 'default': [], 'dependable': True},
             {'name': 'SelectedSource', 'default': 0, 'dependable': True},
             {
                 'name': 'ActiveSource',
@@ -36,6 +37,12 @@ class Sourcerer:
         ]
 
         self.stored = StorageManager(self, self.DataComp, storedItems)
+        self._updateSourceList()
+
+    def _updateSourceList(self):
+        source_list = [str(s['Settings']['Name']['val']) for s in self.stored['Sources']]
+        self.stored['SourceList'] = source_list
+        #self.ownerComp.op('UI/_ui_list').par.reset.pulse()
 
     def _getSource(self, source):
         source_json = None
@@ -230,7 +237,7 @@ class Sourcerer:
 
                         for i in range(len(sources), len(new_sources)):
                             self._checkUniqueName(self.stored['Sources'][i], count=1)
-
+                    self._updateSourceList()
         return
 
     def ExportAll(self):
@@ -280,6 +287,7 @@ class Sourcerer:
 
         # add a default source
         self.AddSource()
+        self._updateSourceList()
         return
 
     # get the desired source template as a JSON op
@@ -462,6 +470,7 @@ class Sourcerer:
 
         if update_selected_comp:
             self.UpdateSelectedSourceComp()
+        self._updateSourceList()
         return
 
     def StoreSource(self, source_comp, source):
@@ -476,6 +485,7 @@ class Sourcerer:
 
         # store the json op to the selected source
         self.stored['Sources'][source] = serializable_jsonOp
+        self._updateSourceList()
         return
 
     # initialize the selected source
@@ -488,6 +498,7 @@ class Sourcerer:
 
         # store the json op to the selected source
         self.stored['Sources'][s] = jsonOp
+        self._updateSourceList()
         return
 
     def _checkUniqueName(self, source, count=0):
@@ -505,6 +516,7 @@ class Sourcerer:
 
             if orig_name != name:
                 source['Settings']['Name']['val'] = name
+        self._updateSourceList()
         return source
 
     # new comp source
@@ -519,6 +531,8 @@ class Sourcerer:
         elif source_type == 'file':
             source = self._getSourceTemplate('fileSource')
             if source_path is not None:
+                debug(source_path)
+                debug(type(source_path))
                 source['File']['File']['val'] = source_path
 
         elif source_type == 'top':
@@ -545,6 +559,7 @@ class Sourcerer:
 
         # update the source comp parameters
         self.UpdateSourceCompQuick(self.selectedSourceComp, s+1, store_changes=True)
+        self._updateSourceList()
         return
 
     def _DropSource(self, args):
@@ -592,6 +607,7 @@ class Sourcerer:
 
         # select the new source
         self.SelectSource(s)
+        self._updateSourceList()
         return
 
     # delete an source
@@ -610,6 +626,7 @@ class Sourcerer:
                 self.SelectSource(len(a) - 1)
             else:
                 self.SelectSource(s)
+        self._updateSourceList()
         return
 
     # select an source
@@ -666,6 +683,7 @@ class Sourcerer:
 
             # select the source
             self.SelectSourceUp()
+        self._updateSourceList()
         return
 
     # move source down
@@ -689,4 +707,5 @@ class Sourcerer:
 
             # select the source
             self.SelectSourceDown()
+        self._updateSourceList()
         return
