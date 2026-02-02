@@ -520,9 +520,11 @@ SourcererGrid is a companion component that displays source thumbnails in a touc
 
 ### Setup
 
-1. Add the SourcererGrid component to your project
-2. Set the **Sourcerer** parameter to reference your Sourcerer component
-3. Configure grid layout and overflow behavior
+1. Ensure `SOFTWARE` env variable is set to path `td-sourcerer` is contained
+    * on macOS, `launchctl setenv SOFTWARE /path/to/td/software`
+2. Add the SourcererGrid component to your project
+3. Set the **Sourcerer** parameter to reference your Sourcerer component
+4. Configure grid layout and overflow behavior
 
 ### Grid Parameters
 
