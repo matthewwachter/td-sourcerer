@@ -504,6 +504,40 @@ class Sourcerer(CallbacksExt):
         """Take the currently selected source."""
         self.Take(self.stored['SelectedSource']['index'])
 
+    def TakeNext(self, wrap=True):
+        """Take the source after the currently active source.
+
+        Args:
+            wrap: If True, wraps from last source back to first.
+        """
+        sources = self.stored['Sources']
+        if not sources:
+            return
+        active = self.stored['ActiveSource']['index']
+        if active == -1:
+            self.Take(0)
+        elif wrap:
+            self.Take((active + 1) % len(sources))
+        elif active + 1 < len(sources):
+            self.Take(active + 1)
+
+    def TakePrevious(self, wrap=True):
+        """Take the source before the currently active source.
+
+        Args:
+            wrap: If True, wraps from first source back to last.
+        """
+        sources = self.stored['Sources']
+        if not sources:
+            return
+        active = self.stored['ActiveSource']['index']
+        if active == -1:
+            self.Take(len(sources) - 1)
+        elif wrap:
+            self.Take((active - 1) % len(sources))
+        elif active - 1 >= 0:
+            self.Take(active - 1)
+
     def DelayTake(self, source, delay=0):
         """Take a source after a delay in frames."""
         run(self.Take, source, delayFrames=delay)
