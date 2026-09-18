@@ -315,6 +315,14 @@ The **Done On** parameter determines when the follow action triggers:
 - **Go to Index** - Jump to a specific source by index
 - **Go to Name** - Jump to a specific source by name
 
+### Loop Playlist
+
+**Play Next** on the last source does nothing by default - playback simply stops there.
+
+Enable **Loop Playlist** (on the Sourcerer component's Settings page, off by default) to wrap back to the first source instead. The toggle is global rather than per-source, since looping is a property of the playlist as a whole.
+
+This affects only the end of the list; Play Next advances normally everywhere else either way. `TakeNext()` and `TakePrevious()` take their own `wrap` argument and are unaffected by this parameter.
+
 ### Early Trigger for Transitions
 
 When using **Play (n) Times** mode with a follow action, the transition to the next source can start early to allow the transition to complete by the time the current source ends. This is calculated automatically based on the next source's transition time.
@@ -387,12 +395,13 @@ When safety is enabled, protected actions will show a confirmation dialog before
 | BG Color | Background color |
 | Global Transition Time | Default transition duration |
 | Enable Pending Queue | Queue source switches during transitions |
+| Loop Playlist | Wrap a Play Next follow action from the last source back to the first (off by default) |
 | Update Display | Enable/disable display property updates (performance toggle) |
 | Enable Logging | Forward log entries to external Logger component |
 | Logger | Reference to TD Logger component |
 | Import | Import sources from JSON |
 | Export All | Export all sources to JSON |
-| Export Selected | Export selected source to JSON |
+| Export Selected | Export the selected sources to JSON |
 | Export Range | Export a range of sources |
 | Init Sources | Reset all sources to default state |
 | Clear Pending Queue | Clear all queued source switches |

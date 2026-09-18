@@ -386,7 +386,10 @@ class Source(CallbacksExt):
         ext.SOURCERER.OnSourceDone()
 
         if follow_action == FollowAction.PLAY_NEXT:
-            ext.SOURCERER.Take(ext.SOURCERER.ActiveSource['index'] + 1)
+            # Defers to TakeNext so the end of the list is handled in one place:
+            # with Loop Playlist off it stops here, with it on it wraps to the
+            # first source.
+            ext.SOURCERER.TakeNext(wrap=ext.SOURCERER.isLoopingPlaylist)
         elif follow_action == FollowAction.GOTO_INDEX:
             if source_type == SourceType.FILE:
                 goto_index = self.ownerComp.par.Gotoindexfile

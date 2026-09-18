@@ -147,6 +147,11 @@ class Sourcerer(CallbacksExt):
         return self.ownerComp.par.Enablependingqueue.eval()
 
     @property
+    def isLoopingPlaylist(self):
+        """Whether a Play Next follow action wraps past the last source."""
+        return self.ownerComp.par.Loopplaylist.eval()
+
+    @property
     def isEditingActive(self):
         """Whether any selected source is the active source (for UI warnings)."""
         return self.stored['ActiveSource']['index'] in self.SelectedIndices
