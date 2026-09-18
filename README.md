@@ -15,6 +15,7 @@ Sourcerer is a streamlined media management component for TouchDesigner that pro
 ## Features
 
 - Centralized source management with a list-based interface
+- Multi-selection with ctrl/shift modifiers, with parameter edits applied across the whole selection
 - Support for file-based media and TOP-based generative content
 - Built-in transitions with customizable timing and easing (Dissolve, Dip, Slide, Wipe, Blur, File, TOP)
 - Post-processing effects (crop, tile, color correction, transform)
@@ -39,7 +40,7 @@ Sources can be created, arranged, and triggered using the toolbar buttons above 
 
 - **Add** - Add new source
 - **TAKE** - Take selected source
-- **Delete** - Delete selected source
+- **Delete** - Delete selected sources
 - **Lock** - Lock/unlock editing (prevents accidental changes)
 
 Sources can be reordered by dragging within the list.
@@ -47,14 +48,50 @@ Sources can be reordered by dragging within the list.
 **Right-click context menu:**
 - Take - Take the selected source
 - Copy / Paste - Copy and paste source configurations
-- Delete - Remove the selected source
+- Delete - Remove the selected sources
 - Import - Import sources from JSON file
-- Export Selected - Export selected source to JSON
+- Export Selected - Export the selected sources to JSON
 - Export All - Export all sources to JSON
+
+### Selecting Multiple Sources
+
+The source list supports multi-selection using the same modifiers as file selection in Windows:
+
+- **Click** - select a single source, clearing any other selection
+- **Ctrl+click** - add a source to the selection, or remove it if already selected
+- **Shift+click** - select every source between the anchor and the clicked row
+
+The anchor is the last source you clicked without shift, so repeated shift-clicks grow and shrink the range from the same origin.
+
+One source in the selection is the **primary**, shown in bold. It is the source whose values the parameter panel displays, and it is the row that single-source actions (Take, Copy, Paste, rename) act on.
+
+Delete and Export Selected act on the whole selection; the context menu shows the count when more than one source is selected. Reordering a source by dragging collapses the selection back to the moved row, since a move invalidates the other indices.
+
+The same behaviour is available from script:
+
+```python
+# Select a single source (clears any other selection)
+op('sourcerer').SelectSource(2)          # selection is now [2], anchor 2
+
+# Ctrl+click equivalent - toggle a source in the selection
+op('sourcerer').SelectSource(4, additive=True)   # [2, 4], anchor 4
+
+# Shift+click equivalent - select the range from the anchor to this index.
+# Like Windows, this replaces the selection rather than adding to it.
+op('sourcerer').SelectSource(7, extend=True)     # [4, 5, 6, 7], anchor still 4
+
+# Inspect the current selection
+op('sourcerer').SelectedIndices   # [4, 5, 6, 7]
+op('sourcerer').IsSelected(4)     # True
+```
 
 ### Editing Sources
 
 Select a source in the list to view and edit its parameters in the parameter panel. Changes are applied immediately. When editing the currently active (live) source, changes are reflected in real-time.
+
+With multiple sources selected, editing a parameter applies that value to **every selected source** at once - useful for setting a common transition time, color correction or transform across a group. The panel shows the primary source's values, and the edited value is broadcast from there.
+
+**Name** is the one exception: it is never broadcast, because source names must stay unique. Renaming with a multi-selection active only renames the primary source.
 
 Use **Save as Default** to store the selected source's settings as the template for newly created sources.
 
