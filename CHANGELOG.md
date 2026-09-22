@@ -1,5 +1,24 @@
 # Changelog
 
+## [2.1.0] - 2026-09-22
+
+### Added
+- **Multi-selection** - Select multiple sources in the list with Windows Explorer semantics: click selects one, Ctrl toggles, Shift selects a range from the anchor. The primary source is shown bold and drives the parameter panel
+- **Parameter broadcast** - Editing a parameter applies the value to every selected source, tuplets included (`Name` is excluded so names stay unique)
+- **Selection API** - `SelectedIndices` property, `IsSelected()`, and `SelectSource(index, additive=False, extend=False)`
+- **Loop Playlist toggle** - New setting on the Sourcerer Settings page. When on, a Play Next follow action on the last source wraps to the first. Off by default
+- **TakeNext / TakePrevious** - Methods for sequential switching relative to the active source, with optional wrap-around (`wrap=True` by default)
+
+### Changed
+- Delete and Export Selected now act on the whole selection. Delete always leaves at least one source
+- Reordering collapses the selection to the moved row
+- The Play Next follow action now uses `TakeNext()`, so the script and follow-action paths behave the same way
+
+### Fixed
+- Play Next on the last source no longer calls `Take()` with an out-of-range index
+- The Next display property and the early-trigger transition time now respect Loop Playlist
+- Embedded copies of `scripts/*.py` in `sourcerer.tox` had drifted behind the files on disk
+
 ## [2.0.5] - 2025-01-30
 
 ### Fixed
