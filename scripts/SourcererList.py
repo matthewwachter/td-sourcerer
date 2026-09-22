@@ -54,6 +54,9 @@ class SourcererList:
         # Clipboard
         self.clipboard = None
 
+        # Context menu labels, rebuilt per open (they carry selection counts)
+        self.menuLabels = {}
+
     # -------------------------------------------------------------------------
     # Data Accessors
     # -------------------------------------------------------------------------
@@ -65,6 +68,15 @@ class SourcererList:
     def getSourceNames(self):
         """Get list of source names."""
         return op(self.ownerComp.par.Sourcerer).SourceNames
+
+    def getSelection(self):
+        """Get the set of selected source indices and the primary index.
+
+        Returns:
+            Tuple of (set of selected indices, primary index).
+        """
+        sourcerer = self.sourcerer()
+        return set(sourcerer.SelectedIndices), sourcerer.SelectedSource['index']
 
     def getSourceName(self, index):
         """Get name of source at index."""
@@ -119,7 +131,8 @@ class SourcererList:
             else:
                 attribs.text = names[row - 1]
                 attribs.editable = 2
-                attribs.help = 'Click to select, drag to reorder, double-click to rename'
+                attribs.help = ('Click to select, ctrl+click to add/remove, shift+click to '
+                                'select a range, drag to reorder, double-click to rename')
 
         attribs.rightBorderOutColor = self.COLORS['border_right']
         attribs.leftBorderOutColor = self.COLORS['border_left']
@@ -158,13 +171,13 @@ class SourcererList:
         if not names:
             return
 
-        selected = self.sourcerer().SelectedSource['index']
+        selected, _ = self.getSelection()
         active_index = self.sourcerer().ActiveSource['index']
 
         # Apply hover to current row
         if row is not None and row > 0 and row != prevRow:
             source_index = row - 1
-            is_selected = (source_index == selected)
+            is_selected = (source_index in selected)
             is_active = (source_index == active_index)
             rowAttribs = comp.rowAttribs[row]
 
@@ -178,7 +191,7 @@ class SourcererList:
         # Reset previous row
         if prevRow is not None and prevRow > 0 and row != prevRow:
             source_index = prevRow - 1
-            is_selected = (source_index == selected)
+            is_selected = (source_index in selected)
             is_active = (source_index == active_index)
             prevRowAttribs = comp.rowAttribs[prevRow]
 
@@ -201,13 +214,27 @@ class SourcererList:
 
         # Left click - select and begin drag
         if start and comp.panel.lselect:
-            self.dragRow = True
-            self.endRow = startRow
-            op(self.ownerComp.par.Sourcerer).SelectSource(source_index)
+            ctrl = bool(comp.panel.ctrl)
+            shift = bool(comp.panel.shift)
+
+            op(self.ownerComp.par.Sourcerer).SelectSource(
+                source_index, additive=ctrl, extend=shift
+            )
+
+            # Drag-to-reorder moves a single row, so it only arms on a plain
+            # click. Dragging during a ctrl/shift click would fight the
+            # selection the user is building.
+            if not ctrl and not shift:
+                self.dragRow = True
+                self.endRow = startRow
 
         # Right click - context menu
         elif start and comp.panel.rselect:
-            op(self.ownerComp.par.Sourcerer).SelectSource(source_index)
+            # Right-clicking inside an existing multi-selection keeps it, so
+            # the menu can act on the whole set (Explorer behaviour).
+            selected, _ = self.getSelection()
+            if source_index not in selected:
+                op(self.ownerComp.par.Sourcerer).SelectSource(source_index)
             self._openContextMenu(source_index)
 
         # Drag end - complete move
@@ -299,13 +326,15 @@ class SourcererList:
         rowAttribs.bottomBorderOutColor = self.COLORS['border_bottom']
 
         source_index = row - 1
-        selected = self.sourcerer().SelectedSource['index']
+        selected, primary = self.getSelection()
         active_index = self.sourcerer().ActiveSource['index']
-        is_selected = (source_index == selected)
+        is_selected = (source_index in selected)
         is_active = (source_index == active_index)
 
         if is_selected:
-            rowAttribs.fontBold = True
+            # Bold marks the primary row - the one whose values the parameter
+            # panel is showing and editing from.
+            rowAttribs.fontBold = (source_index == primary)
             rowAttribs.textColor = self.COLORS['cell_font_active']
             rowAttribs.bgColor = self.COLORS['cell_bg_live_active'] if is_active else self.COLORS['cell_bg_active']
         elif is_active:
@@ -319,7 +348,18 @@ class SourcererList:
 
     def _openContextMenu(self, source_index):
         """Open right-click context menu."""
-        items = ['Take', 'Copy', 'Paste', 'Delete', 'Import', 'Export Selected', 'Export All']
+        count = len(self.getSelection()[0])
+
+        # Delete and Export act on the whole selection, so say how many when
+        # that is more than the row under the cursor.
+        self.menuLabels = {
+            'Delete': f'Delete ({count})' if count > 1 else 'Delete',
+            'Export Selected': f'Export Selected ({count})' if count > 1 else 'Export Selected',
+        }
+
+        items = ['Take', 'Copy', 'Paste',
+                 self.menuLabels['Delete'], 'Import',
+                 self.menuLabels['Export Selected'], 'Export All']
         disabled = [] if self.clipboard else ['Paste']
 
         op.TDResources.op('popMenu').Open(
@@ -327,7 +367,7 @@ class SourcererList:
             callback=self._onContextMenuSelect,
             callbackDetails={'source_index': source_index},
             disabledItems=disabled,
-            dividersAfterItems=['Delete'],
+            dividersAfterItems=[self.menuLabels['Delete']],
         )
 
     def _onContextMenuSelect(self, info):
@@ -335,6 +375,13 @@ class SourcererList:
         action = info['item']
         source_index = info['details']['source_index']
         sourcerer = op(self.ownerComp.par.Sourcerer)
+
+        # Map the possibly count-suffixed labels back to their actions.
+        labels = getattr(self, 'menuLabels', {})
+        for base, label in labels.items():
+            if action == label:
+                action = base
+                break
 
         if action == 'Take':
             sourcerer.Take(source_index)

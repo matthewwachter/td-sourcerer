@@ -101,6 +101,11 @@ class Sourcerer(CallbacksExt):
                 'default': {'index': -1, 'name': ''},
                 'dependable': True
             },
+            {
+                'name': 'Selection',
+                'default': [0],
+                'dependable': True
+            },
             {'name': 'State', 'default': 0, 'dependable': True},
             {'name': 'Safety', 'default': False, 'dependable': True},
             {'name': 'Log', 'default': [], 'dependable': True},
@@ -110,6 +115,11 @@ class Sourcerer(CallbacksExt):
         ]
 
         self.stored = StorageManager(self, self.DataComp, storedItems)
+
+        # Anchor row for shift-extend selection (Windows Explorer semantics).
+        # Instance-level on purpose: a reset anchor after extension reload is
+        # harmless, whereas a stale stored one would be confusing.
+        self._selectAnchor = self.stored['SelectedSource']['index']
 
         # State machine for transitions
         self.transitionState = TransitionState.IDLE
@@ -137,9 +147,75 @@ class Sourcerer(CallbacksExt):
         return self.ownerComp.par.Enablependingqueue.eval()
 
     @property
+    def isLoopingPlaylist(self):
+        """Whether a Play Next follow action wraps past the last source."""
+        return self.ownerComp.par.Loopplaylist.eval()
+
+    @property
     def isEditingActive(self):
-        """Whether the selected source is the active source (for UI warnings)."""
-        return self.stored['SelectedSource']['index'] == self.stored['ActiveSource']['index']
+        """Whether any selected source is the active source (for UI warnings)."""
+        return self.stored['ActiveSource']['index'] in self.SelectedIndices
+
+    # -------------------------------------------------------------------------
+    # Multi-Selection
+    # -------------------------------------------------------------------------
+
+    @property
+    def SelectedIndices(self):
+        """All source indices currently selected for editing.
+
+        Always in ascending order and always includes the primary selection
+        (``SelectedSource['index']``), which is the source whose values the
+        parameter panel displays. Out-of-range entries are filtered out so a
+        stale selection can never break callers.
+
+        Backed by the ``Selection`` stored item rather than a like-named one:
+        StorageManager promotes every stored key onto the component, so a
+        stored ``SelectedIndices`` would shadow this property and hand callers
+        the raw, unvalidated list.
+        """
+        count = len(self.stored['Sources'])
+        primary = self.stored['SelectedSource']['index']
+
+        indices = {int(i) for i in self.stored['Selection'] if 0 <= int(i) < count}
+        if 0 <= primary < count:
+            indices.add(primary)
+
+        return sorted(indices)
+
+    @property
+    def isMultiSelect(self):
+        """Whether more than one source is currently selected."""
+        return len(self.SelectedIndices) > 1
+
+    def IsSelected(self, index):
+        """Whether the given source index is part of the current selection."""
+        return index in self.SelectedIndices
+
+    def _setSelection(self, indices, primary):
+        """Replace the selection set and primary selection, then refresh the UI.
+
+        Args:
+            indices: Iterable of source indices to select.
+            primary: Index whose values the parameter panel should show.
+        """
+        count = len(self.stored['Sources'])
+        clean = sorted({int(i) for i in indices if 0 <= int(i) < count})
+
+        if not clean:
+            clean = [primary] if 0 <= primary < count else []
+
+        if primary not in clean:
+            primary = clean[0] if clean else 0
+
+        self.stored['Selection'] = clean
+        self.stored['SelectedSource']['index'] = primary
+
+        if 0 <= primary < count:
+            self.stored['SelectedSource']['name'] = self.stored['Sources'][primary]['Settings']['Name']
+            self.UpdateSelectedSourceComp()
+        else:
+            self.stored['SelectedSource']['name'] = ''
 
     # -------------------------------------------------------------------------
     # Safety Mode
@@ -286,6 +362,8 @@ class Sourcerer(CallbacksExt):
         # Reset selection and active source
         self.stored['SelectedSource']['index'] = 0
         self.stored['SelectedSource']['name'] = 'new_source'
+        self.stored['Selection'] = [0]
+        self._selectAnchor = 0
         self.stored['ActiveSource']['index'] = -1
         self.stored['ActiveSource']['name'] = ''
         self.stored['State'] = 0
@@ -601,14 +679,15 @@ class Sourcerer(CallbacksExt):
             json.dump(self.stored['Sources'].getRaw(), json_file)
 
     def ExportSelected(self):
-        """Export the selected source to a JSON file."""
+        """Export every selected source to a JSON file."""
         f = ui.chooseFile(load=False, fileTypes=['json'], title='Export Sources')
         if f is None:
             return
 
-        selected = self.stored['SelectedSource']['index']
+        sources = self.stored['Sources']
+        selected = [sources[i].getRaw() for i in self.SelectedIndices if 0 <= i < len(sources)]
         with open(f, 'w') as json_file:
-            json.dump([self.stored['Sources'][selected].getRaw()], json_file)
+            json.dump(selected, json_file)
 
     def ExportRange(self, range_start=None, range_end=None):
         """Export a range of sources to a JSON file."""
@@ -676,6 +755,10 @@ class Sourcerer(CallbacksExt):
     EXCLUDE_FROM_STORAGE = {'Filelengthframes', 'Filesamplerate'}
     # Parameter pages to exclude entirely from storage
     EXCLUDE_PAGES_FROM_STORAGE = {'Callbacks', 'Private'}
+    # Parameters never broadcast across a multi-selection. Names must stay
+    # unique (see _getUniqueName), so copying one across the selection would
+    # break the source list.
+    EXCLUDE_FROM_BROADCAST = {'Name'}
 
     def _extractValues(self, comp):
         """Extract parameter values from a component as a nested dictionary.
@@ -728,8 +811,13 @@ class Sourcerer(CallbacksExt):
         self._updateSourceList()
 
     def StoreParToSelected(self, par):
-        """Store a single parameter value to the selected source in storage."""
-        index = self.stored['SelectedSource']['index']
+        """Store a single parameter value to every selected source in storage.
+
+        With one source selected this is a plain single-source write. With
+        several selected the edited value is broadcast to all of them, so
+        tweaking a parameter re-applies it across the whole selection.
+        """
+        primary = self.stored['SelectedSource']['index']
         page_name = par.page.name
 
         # Skip excluded pages and parameters
@@ -738,20 +826,42 @@ class Sourcerer(CallbacksExt):
         if par.name in self.EXCLUDE_FROM_STORAGE:
             return
 
-        # Handle tuplet parameters (colors, transforms, etc.)
-        if len(par.tuplet) > 1 and par == par.tuplet[0]:
-            self.stored['Sources'][index][page_name][par.tupletName] = [p.eval() for p in par.tuplet]
-        elif len(par.tuplet) == 1:
-            self.stored['Sources'][index][page_name][par.name] = par.eval()
+        # Identity-bearing parameters stay on the primary source only -
+        # broadcasting them would collapse every selected source into
+        # duplicates of one another.
+        if par.name in self.EXCLUDE_FROM_BROADCAST:
+            targets = [primary]
+        else:
+            targets = self.SelectedIndices
+
+        # Handle tuplet parameters (colors, transforms, etc.). Only the first
+        # member of a tuplet writes; the others are picked up alongside it.
+        is_tuplet = len(par.tuplet) > 1
+        if is_tuplet and par != par.tuplet[0]:
+            return
+
+        value = [p.eval() for p in par.tuplet] if is_tuplet else par.eval()
+        key = par.tupletName if is_tuplet else par.name
+
+        sources = self.stored['Sources']
+        for index in targets:
+            if not 0 <= index < len(sources):
+                continue
+            # A source saved before this parameter existed simply has no slot
+            # for it; skip rather than inventing a partial page.
+            if page_name not in sources[index]:
+                continue
+            self.stored['Sources'][index][page_name][key] = value
 
         # Only update source list if name changed
         if par.name == 'Name':
             self._updateSourceList()
 
-        # Update active source in real-time if editing it
-        if index == self.stored['ActiveSource']['index']:
+        # Update active source in real-time if it was one of the edited sources
+        active_index = self.stored['ActiveSource']['index']
+        if active_index in targets:
             active_comp = self.ownerComp.op('source' + str(self.stored['State']))
-            self.UpdateSourceComp(active_comp, index, active=True, store_changes=False)
+            self.UpdateSourceComp(active_comp, active_index, active=True, store_changes=False)
 
     def StoreSource(self, source_comp, source):
         """Store source component parameters to storage at given index."""
@@ -882,34 +992,52 @@ class Sourcerer(CallbacksExt):
         self._updateSourceList()
 
     def DeleteSource(self):
-        """Delete the selected source."""
+        """Delete every selected source.
+
+        At least one source always survives, matching the previous single-select
+        behaviour of refusing to empty the list.
+        """
         if not self._confirmSafetyAction('Delete Source'):
             return
 
-        s = self.stored['SelectedSource']['index']
         sources = self.stored['Sources']
 
         if len(sources) <= 1:
             self._updateSourceList()
             return
 
-        deleted_name = sources[s]['Settings']['Name']
-        is_active = (self.stored['ActiveSource']['index'] == s)
+        # Descending so each pop leaves the remaining targets' indices intact.
+        targets = sorted(set(self.SelectedIndices), reverse=True)
 
-        sources.pop(s)
+        # Never delete the whole list - keep the lowest-indexed target.
+        if len(targets) >= len(sources):
+            targets = targets[:-1]
 
-        if is_active:
-            self.stored['ActiveSource']['index'] = -1
+        if not targets:
+            self._updateSourceList()
+            return
+
+        deleted_names = [sources[i]['Settings']['Name'] for i in targets]
+        active_index = self.stored['ActiveSource']['index']
+        active_deleted = False
+
+        for i in targets:
+            sources.pop(i)
+            if active_index == i:
+                active_index = -1
+                active_deleted = True
+            elif active_index > i:
+                active_index -= 1
+
+        self.stored['ActiveSource']['index'] = active_index
+        if active_deleted:
             self.stored['ActiveSource']['name'] = ''
-        elif self.stored['ActiveSource']['index'] > s:
-            self.stored['ActiveSource']['index'] -= 1
 
-        if s >= len(sources):
-            self.SelectSource(len(sources) - 1)
-        else:
-            self.SelectSource(s)
+        # targets is descending, so its last entry is the lowest index removed.
+        landing = min(targets[-1], len(sources) - 1)
+        self.SelectSource(max(0, landing))
 
-        self._log('DeleteSource', {'index': s, 'name': deleted_name})
+        self._log('DeleteSource', {'indices': list(reversed(targets)), 'names': list(reversed(deleted_names))})
         self._updateSourceList()
 
     def RenameSource(self, index, new_name):
@@ -965,6 +1093,10 @@ class Sourcerer(CallbacksExt):
             elif to_index <= active_index < from_index:
                 self.stored['ActiveSource']['index'] += 1
 
+        # Reordering invalidates every other index in the selection, so collapse
+        # to the row that actually moved.
+        self.stored['Selection'] = [to_index]
+        self._selectAnchor = to_index
         self.stored['SelectedSource']['index'] = to_index
         self.stored['SelectedSource']['name'] = moved_name
 
@@ -1000,19 +1132,55 @@ class Sourcerer(CallbacksExt):
         self.SelectSource(index + 1)
         self._updateSourceList()
 
-    def SelectSource(self, index):
-        """Select a source by index for editing."""
+    def SelectSource(self, index, additive=False, extend=False):
+        """Select a source by index for editing.
+
+        Modifier behaviour mirrors file selection in Windows Explorer. With no
+        modifier the selection collapses to a single source, so every existing
+        caller keeps its original single-select behaviour.
+
+        Args:
+            index: Source index to act on.
+            additive: Ctrl-click - toggle this source in/out of the selection.
+            extend: Shift-click - select the range from the anchor to this index.
+        """
         if index > len(self.stored['Sources']) - 1:
             index = index - 1
 
-        self.stored['SelectedSource']['index'] = index
+        count = len(self.stored['Sources'])
+        if count == 0:
+            self._setSelection([], 0)
+            return
 
-        if 0 <= index < len(self.stored['Sources']):
-            self.stored['SelectedSource']['name'] = self.stored['Sources'][index]['Settings']['Name']
-        else:
-            self.stored['SelectedSource']['name'] = ''
+        index = max(0, min(index, count - 1))
 
-        self.UpdateSelectedSourceComp()
+        if extend:
+            anchor = getattr(self, '_selectAnchor', index)
+            if not 0 <= anchor < count:
+                anchor = index
+            low, high = sorted((anchor, index))
+            # The anchor deliberately survives so repeated shift-clicks keep
+            # growing and shrinking the range from the same origin.
+            self._setSelection(range(low, high + 1), index)
+            return
+
+        if additive:
+            current = set(self.SelectedIndices)
+
+            if index in current and len(current) > 1:
+                current.discard(index)
+                # Hand primary to the nearest survivor above, else below.
+                primary = max((i for i in current if i < index), default=min(current))
+            else:
+                current.add(index)
+                primary = index
+
+            self._selectAnchor = index
+            self._setSelection(current, primary)
+            return
+
+        self._selectAnchor = index
+        self._setSelection([index], index)
 
     def SelectSourceUp(self):
         """Select the previous source in the list."""

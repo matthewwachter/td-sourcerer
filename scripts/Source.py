@@ -113,6 +113,24 @@ class Source(CallbacksExt):
         frame = int(frames % fps)
         return f'{hours:02d}:{minutes:02d}:{seconds:02d}:{frame:02d}'
 
+    def _nextPlayIndex(self, current_index):
+        """Index a Play Next follow action would advance to, or None at the end.
+
+        Mirrors Sourcerer.TakeNext: wraps to the first source only when Loop
+        Playlist is on. Kept in one place so the actual advance, the Next
+        display and the early-trigger timing can't disagree about where a
+        Play Next lands.
+        """
+        count = len(ext.SOURCERER.Sources)
+        if count == 0:
+            return None
+
+        next_index = current_index + 1
+        if next_index < count:
+            return next_index
+
+        return 0 if ext.SOURCERER.isLoopingPlaylist else None
+
     def _getTransitionTimeForFollowAction(self):
         """Get the transition time (in seconds) for the follow action target."""
         follow_action = str(self.ownerComp.par.Followactionfile)
@@ -123,8 +141,8 @@ class Source(CallbacksExt):
         current_index = int(self.ownerComp.par.Index)
 
         if follow_action == FollowAction.PLAY_NEXT:
-            next_index = current_index + 1
-            if next_index < len(ext.SOURCERER.Sources):
+            next_index = self._nextPlayIndex(current_index)
+            if next_index is not None:
                 target_source = ext.SOURCERER.Sources[next_index]
         elif follow_action == FollowAction.GOTO_INDEX:
             goto_index = int(self.ownerComp.par.Gotoindexfile)
@@ -162,8 +180,8 @@ class Source(CallbacksExt):
         target_name = None
 
         if follow_action == FollowAction.PLAY_NEXT:
-            next_index = current_index + 1
-            if next_index < len(ext.SOURCERER.Sources):
+            next_index = self._nextPlayIndex(current_index)
+            if next_index is not None:
                 target_index = next_index
                 target_source = ext.SOURCERER.Sources[next_index]
                 target_name = target_source.get('Settings', {}).get('Name', '')
@@ -386,7 +404,10 @@ class Source(CallbacksExt):
         ext.SOURCERER.OnSourceDone()
 
         if follow_action == FollowAction.PLAY_NEXT:
-            ext.SOURCERER.Take(ext.SOURCERER.ActiveSource['index'] + 1)
+            # Defers to TakeNext so the end of the list is handled in one place:
+            # with Loop Playlist off it stops here, with it on it wraps to the
+            # first source.
+            ext.SOURCERER.TakeNext(wrap=ext.SOURCERER.isLoopingPlaylist)
         elif follow_action == FollowAction.GOTO_INDEX:
             if source_type == SourceType.FILE:
                 goto_index = self.ownerComp.par.Gotoindexfile
